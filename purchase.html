@@ -330,14 +330,11 @@
             const unitPrice = 1000; // Price per unit
             const totalPrice = unitPrice * quantity;
             document.getElementById('total-price').innerText = `總金額: ${totalPrice} NTD`;
-
-            // Store quantity in localStorage
-            localStorage.setItem('quantity', quantity);
         }
 
         // Go to Step 2 (Order Confirmation)
         function goToStep2() {
-            const quantity = localStorage.getItem('quantity') || 1; // Default to 1 if not set
+            const quantity = document.getElementById('quantity').value || 1; // Default to 1 if not set
             const totalPrice = 1000 * quantity;
 
             document.getElementById('confirmation-quantity').innerText = quantity;
@@ -365,15 +362,26 @@
             }
         }
 
-        // Go back to Step 1
+        // Go back to Step 1 and reset values
         function goToStep1() {
             // Reset content and layout of Step 1
             document.getElementById('step1').style.display = 'block';
             document.getElementById('step2').style.display = 'none';
 
             // Reset quantity and total price
-            document.getElementById('quantity').value = localStorage.getItem('quantity') || 1;
-            calculateTotal(); // Recalculate total price based on saved quantity
+            document.getElementById('quantity').value = '1';
+            document.getElementById('total-price').innerText = '總金額: 1000 NTD';
+
+            // Clear form inputs in Step 2
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('phone').value = '';
+
+            // Reset layout (Ensure the image is back to the left side)
+            const container = document.querySelector('.container');
+            container.style.display = 'flex';
+            container.style.flexDirection = 'row'; // Reset layout
         }
     </script>
 
