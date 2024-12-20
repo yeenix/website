@@ -306,6 +306,15 @@
         function goToStep1() {
             document.getElementById('step1').style.display = 'block';
             document.getElementById('step2').style.display = 'none';
+            
+            // Reset the content in Step 2 to prevent layout inconsistencies when going back
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('address').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('confirmation-image').src = ''; // Remove the image
+            document.getElementById('confirmation-quantity').innerText = ''; // Remove the quantity
+            document.getElementById('confirmation-total').innerText = ''; // Remove the total price
         }
     </script>
 
