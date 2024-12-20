@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -15,8 +15,8 @@
         /* Body Styling */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f2f2f2;
-            color: #333;
+            background: linear-gradient(135deg, #f1f1f1, #ffffff); /* Soft whitish gradient */
+            color: #333; /* Darker text for contrast */
             line-height: 1.6;
             display: flex;
             justify-content: center;
@@ -29,21 +29,37 @@
         .container {
             max-width: 1200px;
             width: 100%;
-            background-color: #fff;
+            background: #ffffff;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            margin-top: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
-            box-sizing: border-box;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #f1f1f1; /* Soft border */
         }
 
         /* Title Section */
         .title {
-            font-size: 36px;
-            color: #333;
+            font-size: 48px;
+            color: #5A5A5A; /* Soft dark gray for a modern feel */
             font-weight: 700;
             margin-bottom: 30px;
+            text-transform: uppercase;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background-color: #5A5A5A;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
         }
 
         /* Image Slider */
@@ -54,7 +70,8 @@
             height: 400px;
             margin: 0 auto;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .slider {
@@ -73,7 +90,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .slide img:hover {
+            transform: scale(1.05);
         }
 
         /* Radio Buttons for Image Slider */
@@ -93,13 +115,15 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            visibility: visible; /* Keep the radio button visible */
-            opacity: 0.7; /* Slight opacity to make it cleaner */
+            visibility: visible;
+            opacity: 0.8;
             cursor: pointer;
+            border-radius: 50%;
+            background-color: #B0B0B0; /* Soft gray */
         }
 
         .slider-radio-buttons input:checked {
-            background-color: #006f8e; /* Color change when checked */
+            background-color: #5A5A5A; /* Darker gray for checked */
         }
 
         /* Description Section */
@@ -112,17 +136,25 @@
             margin-bottom: 40px;
             line-height: 1.8;
             color: #555;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95); /* Light whitish background */
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+        .description:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
         .description h2 {
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 15px;
-            color: #006f8e;
+            color: #5A5A5A; /* Soft dark gray for titles */
+            border-bottom: 2px solid #f1f1f1; /* Soft underline */
+            padding-bottom: 10px;
         }
 
         .description ul {
@@ -134,79 +166,44 @@
         .description ul li {
             margin-bottom: 15px;
             font-size: 18px;
-            color: #555;
+            color: #666; /* Light gray for text */
         }
 
         .highlight {
             font-weight: bold;
-            color: #006f8e;
+            color: #5A5A5A; /* Soft dark gray */
         }
 
         /* Call to Action Button */
         .cta-button {
-            background-color: #006f8e;
+            background-color: #5A5A5A; /* Soft dark gray */
             color: white;
             padding: 18px 36px;
             font-size: 20px;
             font-weight: 600;
             border: none;
-            border-radius: 8px;
+            border-radius: 30px;
             cursor: pointer;
             width: 100%;
             max-width: 300px;
             transition: background-color 0.3s ease, transform 0.2s ease;
             margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(90, 90, 90, 0.2);
         }
 
         .cta-button:hover {
-            background-color: #00576b;
+            background-color: #3E3E3E;
             transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(90, 90, 90, 0.3);
         }
 
-        /* Next Page Button */
-        .next-page-button {
-            background-color: #ff9800;
-            color: white;
-            padding: 18px 36px;
-            font-size: 20px;
-            font-weight: 600;
-            border: none;
+        /* Decorative Elements */
+        .decorative-line {
+            width: 80%;
+            height: 3px;
+            background-color: #B0B0B0; /* Soft gray */
+            margin: 30px auto;
             border-radius: 50px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 30px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .next-page-button:hover {
-            background-color: #e58900;
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .next-page-button-container {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        /* Footer */
-        .footer {
-            margin-top: 40px;
-            font-size: 14px;
-            color: #777;
-        }
-
-        .footer a {
-            color: #006f8e;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
         }
 
         /* Responsive Design */
@@ -224,11 +221,6 @@
                 padding: 16px 32px;
             }
 
-            .next-page-button {
-                font-size: 18px;
-                padding: 16px 32px;
-            }
-
             .slider-container {
                 height: 250px;
             }
@@ -242,6 +234,9 @@
         <div class="title">
             超導石墨烯機能枕 MF-PL-06
         </div>
+
+        <!-- Decorative Line -->
+        <div class="decorative-line"></div>
 
         <!-- Image Slider -->
         <div class="slider-container">
@@ -278,14 +273,13 @@
                 <li><span class="highlight">✅ 人體工學設計：</span>仰睡、側睡都舒適！三大分區設計（頭部支撐區、側睡區、正睡區），讓你怎麼睡都剛剛好！</li>
                 <li><span class="highlight">✅ 高密度記憶棉＋彈力PU棉：</span>雙重材質完美支撐，有彈性又能釋放壓力，讓肩頸輕鬆無負擔！</li>
                 <li><span class="highlight">✅ 高度可調整：</span>貼心設計，枕芯高度自由調整，每個人都能找到最舒服的角度！</li>
-                <li><span class="highlight">✅ 超透氣、不悶熱：</span>透氣網布＋高級織花布，讓你整晚保持乾爽，夏天也能安穩好眠！</li>
+                <span class="highlight">✅ 超透氣、不悶熱：</span>透氣網布＋高級織花布，讓你整晚保持乾爽，夏天也能安穩好眠！
             </ul>
 
             <h2>保固、配送與優惠 📣</h2>
             <ul>
                 <li><span class="highlight">🛡️ 保固期：</span>享有 1年保固，買得安心，用得放心！</li>
                 <li><span class="highlight">🚚 配送服務：</span>團購價含運不含稅，讓你省荷包！</li>
-                <li>可直送團購人員指定地址，輕鬆收貨超便利！</li>
             </ul>
 
             <h2>適合誰？</h2>
@@ -299,53 +293,10 @@
             <p>📦 揪團享划算：一次買足，全家人一起睡得好！</p>
         </div>
 
-        <!-- Next Page Button -->
-        <div class="next-page-button-container">
-            <button class="next-page-button" onclick="window.location.href='purchase.html'">我要下單！</button>
+        <!-- Call to Action Button -->
+        <div>
+            <button class="cta-button">馬上購買</button>
         </div>
     </div>
-
-    <script>
-        // JavaScript for Image Slider and Radio Button functionality
-        const radioButton1 = document.getElementById('image1');
-        const radioButton2 = document.getElementById('image2');
-        const radioButton3 = document.getElementById('image3');
-
-        const slider = document.querySelector('.slider');
-
-        // Event listeners for radio buttons to move the slider
-        radioButton1.addEventListener('change', function () {
-            if (radioButton1.checked) {
-                slider.style.transform = 'translateX(0)';
-            }
-        });
-
-        radioButton2.addEventListener('change', function () {
-            if (radioButton2.checked) {
-                slider.style.transform = 'translateX(-100%)';
-            }
-        });
-
-        radioButton3.addEventListener('change', function () {
-            if (radioButton3.checked) {
-                slider.style.transform = 'translateX(-200%)';
-            }
-        });
-
-        // Auto Slide every 3 seconds
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-            // Update radio button states based on the current slide
-            document.getElementById('image1').checked = currentSlide === 0;
-            document.getElementById('image2').checked = currentSlide === 1;
-            document.getElementById('image3').checked = currentSlide === 2;
-        }, 3000);
-    </script>
 </body>
 </html>
