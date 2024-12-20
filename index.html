@@ -12,6 +12,7 @@
             box-sizing: border-box;
         }
 
+        /* Body Styling */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f2f2f2;
@@ -24,6 +25,7 @@
             padding: 0 20px;
         }
 
+        /* Main Container */
         .container {
             max-width: 1200px;
             width: 100%;
@@ -36,6 +38,7 @@
             box-sizing: border-box;
         }
 
+        /* Title Section */
         .title {
             font-size: 36px;
             color: #333;
@@ -43,12 +46,7 @@
             margin-bottom: 30px;
         }
 
-        .subtitle {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
+        /* Image Slider */
         .slider-container {
             position: relative;
             width: 100%;
@@ -68,91 +66,257 @@
             width: 100%;
             height: 100%;
             flex-shrink: 0;
+            position: relative;
         }
 
         .slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 12px;
         }
 
+        /* Radio Buttons for Image Slider */
         .slider-radio-buttons {
             display: flex;
             justify-content: center;
             margin-top: 10px;
         }
 
-        .slider-radio-buttons input {
-            appearance: none;
-            width: 15px;
-            height: 15px;
-            background-color: #ccc;
-            border-radius: 50%;
-            margin: 0 5px;
+        .slider-radio-buttons label {
+            margin-right: 10px;
+            font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+        }
+
+        .slider-radio-buttons input {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            visibility: visible; /* Keep the radio button visible */
+            opacity: 0.7; /* Slight opacity to make it cleaner */
+            cursor: pointer;
         }
 
         .slider-radio-buttons input:checked {
-            background-color: #333;
+            background-color: #006f8e; /* Color change when checked */
+        }
+
+        /* Description Section */
+        .description {
+            width: 100%;
+            max-width: 1000px;
+            text-align: left;
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            color: #555;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        .description h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #006f8e;
+        }
+
+        .description ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 30px;
+        }
+
+        .description ul li {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #006f8e;
+        }
+
+        /* Call to Action Button */
+        .cta-button {
+            background-color: #006f8e;
+            color: white;
+            padding: 18px 36px;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background-color: #00576b;
+        }
+
+        /* Next Page Button */
+        .next-page-button {
+            background-color: #006f8e;
+            color: white;
+            padding: 18px 36px;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            float: right;
+        }
+
+        .next-page-button:hover {
+            background-color: #00576b;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .footer a {
+            color: #006f8e;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .cta-button {
+                font-size: 18px;
+                padding: 16px 32px;
+            }
+
+            .next-page-button {
+                font-size: 18px;
+                padding: 16px 32px;
+            }
+
+            .slider-container {
+                height: 250px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Main Container -->
     <div class="container">
-        <div class="first-page">
-            <div class="title">超導石墨烯機能枕 MF-PL-06</div>
-            <div class="subtitle">優化睡眠品質，呵護健康生活。</div>
-            <div class="slider-container">
-                <div class="slider">
-                    <div class="slide">
-                        <img src="https://linensociety.com/cdn/shop/products/heirloom-pillow_14294b09-8232-4d5d-a305-022b802669ab.jpg?v=1584402804&width=1400" alt="超導石墨烯機能枕">
-                    </div>
-                    <div class="slide">
-                        <img src="https://m.media-amazon.com/images/I/71QFYRaaDML._AC_SL1500_.jpg" alt="功能展示圖">
-                    </div>
+        <!-- Title Section -->
+        <div class="title">
+            超導石墨烯機能枕 MF-PL-06
+        </div>
+
+        <!-- Image Slider -->
+        <div class="slider-container">
+            <div class="slider">
+                <!-- First Image Slide -->
+                <div class="slide" id="slide-1">
+                    <img src="https://linensociety.com/cdn/shop/products/heirloom-pillow_14294b09-8232-4d5d-a305-022b802669ab.jpg?v=1584402804&width=1400" alt="超導石墨烯機能枕">
+                </div>
+                <!-- Second Image Slide -->
+                <div class="slide" id="slide-2">
+                    <img src="https://m.media-amazon.com/images/I/71QFYRaaDML._AC_SL1500_.jpg" alt="Image 2">
                 </div>
             </div>
-            <div class="slider-radio-buttons">
-                <input type="radio" name="slider" id="radio-1" onclick="moveSlide(0)" checked>
-                <input type="radio" name="slider" id="radio-2" onclick="moveSlide(1)">
-            </div>
-            <div class="description">
-                <p>本枕芯採用最新超導石墨烯技術，具有高效導熱、抗菌防螨功能。</p>
-                <p>符合人體工學設計，支撐頸椎，有效緩解壓力。</p>
-            </div>
         </div>
+
+        <!-- Radio Buttons for Image Slider -->
+        <div class="slider-radio-buttons">
+            <label for="image1"><input type="radio" name="image-slide" id="image1"></label>
+            <label for="image2"><input type="radio" name="image-slide" id="image2"></label>
+        </div>
+
+        <!-- Description Section -->
+        <div class="description">
+            <p>每天都睡得不舒服？你可能只是少了一顆好枕頭！</p>
+
+            <h2>枕頭亮點一次看 👀</h2>
+            <ul>
+                <li><span class="highlight">✅ 石墨烯科技：</span>採用超導石墨烯纖維布，發射遠紅外線，幫你促進局部循環，讓肩頸放鬆，睡得更深更沉。</li>
+                <li><span class="highlight">✅ 人體工學設計：</span>仰睡、側睡都舒適！三大分區設計（頭部支撐區、側睡區、正睡區），讓你怎麼睡都剛剛好！</li>
+                <li><span class="highlight">✅ 高密度記憶棉＋彈力PU棉：</span>雙重材質完美支撐，有彈性又能釋放壓力，讓肩頸輕鬆無負擔！</li>
+                <li><span class="highlight">✅ 高度可調整：</span>貼心設計，枕芯高度自由調整，每個人都能找到最舒服的角度！</li>
+                <li><span class="highlight">✅ 超透氣、不悶熱：</span>透氣網布＋高級織花布，讓你整晚保持乾爽，夏天也能安穩好眠！</li>
+            </ul>
+
+            <h2>保固、配送與優惠 📣</h2>
+            <ul>
+                <li><span class="highlight">🛡️ 保固期：</span>享有 1年保固，買得安心，用得放心！</li>
+                <li><span class="highlight">🚚 配送服務：</span>團購價含運不含稅，讓你省荷包！</li>
+                <li>可直送團購人員指定地址，輕鬆收貨超便利！</li>
+            </ul>
+
+            <h2>適合誰？</h2>
+            <ul>
+                <li>👩‍💻 長時間辦公、肩頸痠痛的你</li>
+                <li>🛌 翻來翻去睡不著的你</li>
+                <li>🎁 想送家人朋友一份健康好眠的貼心禮物</li>
+            </ul>
+
+            <h2>團購優惠火熱進行中！🎉</h2>
+            <p>📦 揪團享划算：一次買足，全家人一起睡得好！</p>
+            <button class="cta-button">加入團購</button>
+        </div>
+
+        <!-- Next Page Button -->
+        <button class="next-page-button" onclick="window.location.href='second-page.html'">下一頁</button>
     </div>
 
     <script>
+        // JavaScript for Image Slider and Radio Button functionality
+        const radioButton1 = document.getElementById('image1');
+        const radioButton2 = document.getElementById('image2');
+        const slider = document.querySelector('.slider');
+
+        radioButton1.addEventListener('change', function () {
+            if (radioButton1.checked) {
+                slider.style.transform = 'translateX(0)';
+            }
+        });
+
+        radioButton2.addEventListener('change', function () {
+            if (radioButton2.checked) {
+                slider.style.transform = 'translateX(-100%)';
+            }
+        });
+
+        // Auto Slide every 3 seconds
         let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
 
-        // Function to move the slider images
-        function moveSlide(index) {
-            const slider = document.querySelector('.slider');
-            const slideWidth = document.querySelector('.slide').offsetWidth;
-            slider.style.transform = `translateX(-${index * slideWidth}px)`;
-            updateRadioButtons(index);
-            currentSlide = index;
-        }
-
-        // Function to automatically slide
-        function autoSlide() {
-            const slides = document.querySelectorAll('.slide');
-            currentSlide = (currentSlide + 1) % slides.length;
-            moveSlide(currentSlide);
-        }
-
-        // Function to update radio buttons
-        function updateRadioButtons(index) {
-            const radios = document.querySelectorAll('.slider-radio-buttons input');
-            radios.forEach((radio, i) => {
-                radio.checked = i === index;
-            });
-        }
-
-        // Set the interval for automatic sliding
-        setInterval(autoSlide, 3000);
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.getElementById('image1').checked = currentSlide === 0;
+            document.getElementById('image2').checked = currentSlide === 1;
+        }, 3000);
     </script>
 </body>
 </html>
