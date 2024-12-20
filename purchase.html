@@ -7,19 +7,18 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(120deg, #a8e6ff, #d4f5ff);
-            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+            align-items: center;
+            background: linear-gradient(120deg, #f3f9ff, #d9efff),
+                        repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.4) 20px, rgba(255, 255, 255, 0.4) 40px);
+            color: #333;
         }
 
         .container {
-            display: flex;
-            flex-direction: column;
             background-color: #ffffff;
             width: 90%;
             max-width: 1200px;
@@ -37,16 +36,9 @@
             font-weight: bold;
         }
 
-        .content {
-            display: flex;
-            flex: 1;
-            flex-direction: column;
-        }
-
         .content-step {
             display: flex;
             flex-direction: row;
-            flex: 1;
             padding: 20px;
         }
 
@@ -119,6 +111,22 @@
             background: #ffffff;
         }
 
+        input,
+        textarea {
+            font-size: 16px;
+            padding: 10px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            width: 100%;
+            border: 1px solid #ddd;
+            background: #ffffff;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
         button {
             padding: 12px 20px;
             font-size: 18px;
@@ -155,15 +163,6 @@
             margin-top: 24px;
         }
 
-        .form-section {
-            flex: 1;
-            padding: 20px;
-            background: #f9f9f9;
-            display: flex;
-            flex-direction: column;
-            border-radius: 16px;
-        }
-
         .confirmation-box {
             background: #ffffff;
             padding: 16px;
@@ -189,26 +188,49 @@
             font-size: 18px;
             margin-bottom: 8px;
         }
-
-        input,
-        textarea {
-            font-size: 16px;
-            padding: 10px;
-            margin-bottom: 12px;
-            border-radius: 8px;
-            width: 100%;
-            border: 1px solid #ddd;
-            background: #ffffff;
-        }
-
-        textarea {
-            resize: none;
-            height: 100px;
-        }
     </style>
+    <script>
+        let selectedQuantity = 1;
+
+        function calculateTotal() {
+            const quantityElement = document.getElementById('quantity');
+            selectedQuantity = parseInt(quantityElement.value, 10);
+            const totalPrice = selectedQuantity * 1000;
+            document.getElementById('total-price').innerText = `總金額: ${totalPrice} NTD`;
+        }
+
+        function goToStep2() {
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+
+            step1.style.display = 'none';
+            step2.style.display = 'flex';
+
+            const confirmationBox = document.getElementById('confirmation-box');
+            confirmationBox.innerHTML = `
+                <img src="small.jpg" alt="Product Image">
+                <div class="confirmation-details">
+                    <div class="confirmation-item">商品: 超導石墨烯機能枕 MF-PL-06</div>
+                    <div class="confirmation-item">數量: ${selectedQuantity}</div>
+                    <div class="confirmation-item">總金額: ${selectedQuantity * 1000} NTD</div>
+                </div>
+            `;
+        }
+
+        function goBackToStep1() {
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+
+            step1.style.display = 'flex';
+            step2.style.display = 'none';
+
+            // Reset form values
+            document.getElementById('quantity').value = '1';
+            calculateTotal();
+        }
+    </script>
 </head>
 <body>
-
     <div class="container">
         <div class="header">超導石墨烯機能枕 - 訂購頁</div>
 
@@ -217,11 +239,9 @@
             <div class="image-section">
                 <img src="small.jpg" alt="Pillow Image">
             </div>
-
             <div class="details-section">
                 <div class="title">超導石墨烯機能枕 MF-PL-06</div>
                 <div class="price">1000 NTD</div>
-
                 <div class="quantity-selection">
                     <label for="quantity">數量:</label>
                     <select id="quantity" name="quantity" onchange="calculateTotal()">
@@ -232,9 +252,7 @@
                         <option value="5">5</option>
                     </select>
                 </div>
-
                 <div class="total-price" id="total-price">總金額: 1000 NTD</div>
-
                 <div class="button-container">
                     <button class="secondary" onclick="window.location.href = 'index.html';">首頁</button>
                     <button class="primary" onclick="goToStep2()">下一步</button>
@@ -244,65 +262,28 @@
 
         <!-- Step 2 -->
         <div class="content-step" id="step2" style="display: none;">
-            <div class="form-section">
-                <div class="confirmation-box">
-                    <img src="small.jpg" alt="Pillow Image">
-                    <div class="confirmation-details">
-                        <div class="confirmation-item"><strong>商品名稱:</strong> 超導石墨烯機能枕 MF-PL-06</div>
-                        <div class="confirmation-item" id="confirm-quantity"><strong>數量:</strong> 1</div>
-                        <div class="confirmation-item" id="confirm-total"><strong>總金額:</strong> 1000 NTD</div>
-                    </div>
-                </div>
+            <div class="details-section">
+                <div class="title">訂單確認</div>
+                <div class="confirmation-box" id="confirmation-box"></div>
+                <form>
+                    <label for="name">姓名:</label>
+                    <input type="text" id="name" name="name" placeholder="請輸入您的姓名" required>
 
-                <label for="name">姓名:</label>
-                <input type="text" id="name" name="name" placeholder="請輸入您的姓名" required>
+                    <label for="phone">電話號碼:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="請輸入您的電話號碼" required>
 
-                <label for="email">電子郵件:</label>
-                <input type="email" id="email" name="email" placeholder="請輸入您的電子郵件" required>
+                    <label for="address">地址:</label>
+                    <textarea id="address" name="address" placeholder="請輸入您的地址" required></textarea>
 
-                <label for="address">地址:</label>
-                <textarea id="address" name="address" placeholder="請輸入您的地址" required></textarea>
-
-                <label for="phone">電話:</label>
-                <input type="tel" id="phone" name="phone" placeholder="請輸入您的電話號碼" required>
-
+                    <label for="email">電子郵件:</label>
+                    <input type="email" id="email" name="email" placeholder="請輸入您的電子郵件" required>
+                </form>
                 <div class="button-container">
-                    <button class="secondary" onclick="goToStep1()">返回</button>
-                    <button class="primary" onclick="submitForm()">立即訂購</button>
+                    <button class="secondary" onclick="goBackToStep1()">上一步</button>
+                    <button class="primary">下單</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        function calculateTotal() {
-            const quantity = document.getElementById('quantity').value;
-            const unitPrice = 1000;
-            const totalPrice = unitPrice * quantity;
-            document.getElementById('total-price').innerText = `總金額: ${totalPrice} NTD`;
-        }
-
-        function goToStep2() {
-            const quantity = document.getElementById('quantity').value;
-            const unitPrice = 1000;
-            const totalPrice = unitPrice * quantity;
-
-            document.getElementById('confirm-quantity').innerText = `數量: ${quantity}`;
-            document.getElementById('confirm-total').innerText = `總金額: ${totalPrice} NTD`;
-
-            document.getElementById('step1').style.display = 'none';
-            document.getElementById('step2').style.display = 'flex';
-        }
-
-        function goToStep1() {
-            document.getElementById('step1').style.display = 'flex';
-            document.getElementById('step2').style.display = 'none';
-        }
-
-        function submitForm() {
-            alert('訂單已確認！');
-        }
-    </script>
-
 </body>
 </html>
