@@ -23,6 +23,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 0 20px;
+            overflow: hidden; /* To prevent scrolling during the zoom-in effect */
         }
 
         /* Main Container */
@@ -92,6 +93,7 @@
             object-fit: contain; /* Maintain the original aspect ratio */
             border-radius: 20px;
             transition: transform 0.3s ease;
+            cursor: pointer; /* Makes the image clickable */
         }
 
         .slide img:hover {
@@ -126,6 +128,41 @@
 
         .slider-radio-buttons input:checked {
             background-color: #5A5A5A; /* Darker gray for checked */
+        }
+
+        /* Fullscreen View Styling */
+        .fullscreen-view {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .fullscreen-view img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .fullscreen-view.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Background Blur when Image is Fullscreen */
+        .blurred {
+            filter: blur(10px);
+            pointer-events: none; /* Prevent interactions with the blurred background */
         }
 
         /* Description Section */
@@ -245,15 +282,15 @@
             <div class="slider" id="slider">
                 <!-- First Image Slide -->
                 <div class="slide" id="slide-1">
-                    <img src="big.jpg" alt="Image 1">
+                    <img src="big.jpg" alt="Image 1" class="slide-image">
                 </div>
                 <!-- Second Image Slide -->
                 <div class="slide" id="slide-2">
-                    <img src="left.png" alt="Image 2">
+                    <img src="left.png" alt="Image 2" class="slide-image">
                 </div>
                 <!-- Third Image Slide -->
                 <div class="slide" id="slide-3">
-                    <img src="right.png" alt="Image 3">
+                    <img src="right.png" alt="Image 3" class="slide-image">
                 </div>
             </div>
         </div>
@@ -278,61 +315,41 @@
                 <li><span class="highlight">✅ 人體工學設計：</span>仰睡、側睡都舒適！三大分區設計（頭部支撐區、側睡區、正睡區），讓你怎麼睡都剛剛好！</li>
                 <li><span class="highlight">✅ 高密度記憶棉＋彈力PU棉：</span>雙重材質完美支撐，有彈性又能釋放壓力，讓肩頸輕鬆無負擔！</li>
                 <li><span class="highlight">✅ 高度可調整：</span>貼心設計，枕芯高度自由調整，每個人都能找到最舒服的角度！</li>
-                <li><span class="highlight">✅ 超透氣、不悶熱：</span>透氣網布＋高級織花布，讓你整晚保持乾爽，夏天也能安穩好眠！</li>
+                <span class="highlight">✅ 超透氣、不悶熱：</span>透氣網布＋高級織花布，讓你整晚保持乾爽，夏天也能安穩好眠！</li>
             </ul>
-
-            <h2>保固、配送與優惠 📣</h2>
-            <ul>
-                <li><span class="highlight">🛡️ 保固期：</span>享有 1年保固，買得安心，用得放心！</li>
-                <li><span class="highlight">🚚 配送服務：</span>
-                    <ul>
-                        <li>團購價含運不含稅，讓你省荷包！</li>
-                        <li>可直送團購人員指定地址，輕鬆收貨超便利！</li>
-                    </ul>
-                </li>
-            </ul>
-
-            <h2>適合誰？</h2>
-            <ul>
-                <li>👩‍💻 長時間辦公、肩頸痠痛的你</li>
-                <li>🛌 翻來翻去睡不著的你</li>
-                <li>🎁 想送家人朋友一份健康好眠的貼心禮物</li>
-            </ul>
-
-            <h2>團購優惠火熱進行中！🎉</h2>
-            <p>📦 揪團享划算：一次買足，全家人一起睡得好！</p>
-            <p>👉 數量有限，揪團快下單！</p>
-
-            <h2>加入團購</h2>
-            <p>一起用超導石墨烯機能枕，讓每個夜晚變得超舒服！</p>
         </div>
 
-        <!-- Call to Action Button -->
-        <div>
-            <button class="cta-button" onclick="location.href='purchase.html'">我要!</button>
-        </div>
+    <!-- Fullscreen Image View -->
+    <div class="fullscreen-view" id="fullscreenView">
+        <img id="fullscreenImage" src="" alt="Fullscreen Image">
     </div>
 
     <script>
-        let currentIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const radioButtons = document.querySelectorAll('input[name="image-slide"]');
+        const images = document.querySelectorAll('.slide-image');
+        const fullscreenView = document.getElementById('fullscreenView');
+        const fullscreenImage = document.getElementById('fullscreenImage');
+        const body = document.querySelector('body');
 
-        function changeSlide(index) {
-            // Slide transition logic: move slider using 'transform'
-            const slider = document.querySelector('.slider');
-            slider.style.transform = `translateX(-${index * 100}%)`;
-
-            // Reset radio buttons
-            radioButtons.forEach(button => button.checked = false);
-            radioButtons[index].checked = true;
-        }
-
-        // Automatic slider transition
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            changeSlide(currentIndex);
-        }, 5000);
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                if (fullscreenView.classList.contains('active')) {
+                    // Minimize the image back into the slider
+                    fullscreenView.classList.remove('active');
+                    body.classList.remove('blurred');
+                    setTimeout(() => {
+                        fullscreenView.style.display = 'none';
+                    }, 500); // Transition time
+                } else {
+                    // Show the image in full-screen
+                    fullscreenImage.src = image.src;
+                    fullscreenView.style.display = 'flex';
+                    setTimeout(() => {
+                        fullscreenView.classList.add('active');
+                        body.classList.add('blurred');
+                    }, 10); // Delay to trigger the CSS transition
+                }
+            });
+        });
     </script>
 </body>
 </html>
