@@ -297,34 +297,43 @@
         // JavaScript for Image Slider and Radio Button functionality
         const radioButton1 = document.getElementById('image1');
         const radioButton2 = document.getElementById('image2');
-        const radioButton2 = document.getElementById('image3');
-        
+        const radioButton3 = document.getElementById('image3');  // Fixed the duplicate variable name
+    
         const slider = document.querySelector('.slider');
-
+    
+        // Event listeners for radio buttons to move the slider
         radioButton1.addEventListener('change', function () {
             if (radioButton1.checked) {
                 slider.style.transform = 'translateX(0)';
             }
         });
-
+    
         radioButton2.addEventListener('change', function () {
             if (radioButton2.checked) {
                 slider.style.transform = 'translateX(-100%)';
             }
         });
-
+    
+        radioButton3.addEventListener('change', function () {
+            if (radioButton3.checked) {
+                slider.style.transform = 'translateX(-200%)';
+            }
+        });
+    
         // Auto Slide every 3 seconds
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
-
+    
         setInterval(() => {
             currentSlide = (currentSlide + 1) % totalSlides;
             slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update radio button states based on the current slide
             document.getElementById('image1').checked = currentSlide === 0;
             document.getElementById('image2').checked = currentSlide === 1;
             document.getElementById('image3').checked = currentSlide === 2;
         }, 3000);
-    </script>
+</script>
 </body>
 </html>
