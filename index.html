@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -240,7 +240,7 @@
 
         <!-- Image Slider -->
         <div class="slider-container">
-            <div class="slider">
+            <div class="slider" id="slider">
                 <!-- First Image Slide -->
                 <div class="slide" id="slide-1">
                     <img src="big.jpg" alt="Image 1">
@@ -295,8 +295,45 @@
 
         <!-- Call to Action Button -->
         <div>
-            <button class="cta-button">我要!</button>
+            <button class="cta-button">馬上購買</button>
         </div>
     </div>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const radioButtons = document.querySelectorAll('input[name="image-slide"]');
+
+        function changeSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => slide.style.display = 'none');
+            // Reset radio buttons
+            radioButtons.forEach(button => button.checked = false);
+
+            // Show the current slide
+            slides[index].style.display = 'block';
+            radioButtons[index].checked = true;
+        }
+
+        // Function to auto-rotate the slider
+        function autoRotate() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            changeSlide(currentIndex);
+        }
+
+        // Initial slide setup
+        changeSlide(currentIndex);
+
+        // Auto-rotate every 3 seconds
+        setInterval(autoRotate, 3000);
+
+        // Manually changing the slide when a radio button is clicked
+        radioButtons.forEach((radio, index) => {
+            radio.addEventListener('click', () => {
+                currentIndex = index;
+                changeSlide(currentIndex);
+            });
+        });
+    </script>
 </body>
 </html>
