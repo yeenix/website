@@ -237,11 +237,15 @@
             <div class="slider">
                 <!-- First Image Slide -->
                 <div class="slide" id="slide-1">
-                    <img src="https://linensociety.com/cdn/shop/products/heirloom-pillow_14294b09-8232-4d5d-a305-022b802669ab.jpg?v=1584402804&width=1400" alt="超導石墨烯機能枕">
+                    <img src="big.jpg" alt="Image 1">
                 </div>
                 <!-- Second Image Slide -->
                 <div class="slide" id="slide-2">
-                    <img src="https://m.media-amazon.com/images/I/71QFYRaaDML._AC_SL1500_.jpg" alt="Image 2">
+                    <img src="left.jpg" alt="Image 2">
+                </div>
+                <!-- Second Image Slide -->
+                <div class="slide" id="slide-3">
+                    <img src="right.jpg" alt="Image 3">
                 </div>
             </div>
         </div>
@@ -250,6 +254,8 @@
         <div class="slider-radio-buttons">
             <label for="image1"><input type="radio" name="image-slide" id="image1"></label>
             <label for="image2"><input type="radio" name="image-slide" id="image2"></label>
+            <label for="image3"><input type="radio" name="image-slide" id="image3"></label>
+            
         </div>
 
         <!-- Description Section -->
@@ -281,11 +287,10 @@
 
             <h2>團購優惠火熱進行中！🎉</h2>
             <p>📦 揪團享划算：一次買足，全家人一起睡得好！</p>
-            <button class="cta-button">加入團購</button>
         </div>
 
         <!-- Next Page Button -->
-        <button class="next-page-button" onclick="window.location.href='purchase.html'">下一頁</button>
+        <button class="next-page-button" onclick="window.location.href='purchase.html'">我要!</button>
     </div>
 
     <script>
@@ -316,6 +321,7 @@
             slider.style.transform = `translateX(-${currentSlide * 100}%)`;
             document.getElementById('image1').checked = currentSlide === 0;
             document.getElementById('image2').checked = currentSlide === 1;
+            document.getElementById('image2').checked = currentSlide === 2;
         }, 3000);
     </script>
 </body>
