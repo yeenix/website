@@ -137,13 +137,23 @@
         }
 
         button.primary {
-            background: #ff9800;
+            background: linear-gradient(90deg, #ff9800, #ffcc80);
             color: #ffffff;
-            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+            font-size: 20px;
+            font-weight: bold;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-end; /* Aligns with the box above */
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
         }
 
         button.primary:hover {
-            background: #ffa726;
+            background: linear-gradient(90deg, #ffa726, #ffab40);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(255, 152, 0, 0.6);
         }
 
         button.secondary {
@@ -158,7 +168,7 @@
 
         .button-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             gap: 16px;
             margin-top: 24px;
         }
