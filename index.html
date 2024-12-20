@@ -268,6 +268,9 @@
         <!-- Description Section -->
         <div class="description">
             <p>每天都睡得不舒服？你可能只是少了一顆好枕頭！</p>
+            
+            <h2>🌟 超導石墨烯機能枕 MF-PL-06 🌟</h2>
+            <p>💤 超強支撐力 × 舒適透氣 × 完美貼合<br>讓你一覺到天亮，舒服到不想離開床！</p>
 
             <h2>枕頭亮點一次看 👀</h2>
             <ul>
@@ -275,13 +278,18 @@
                 <li><span class="highlight">✅ 人體工學設計：</span>仰睡、側睡都舒適！三大分區設計（頭部支撐區、側睡區、正睡區），讓你怎麼睡都剛剛好！</li>
                 <li><span class="highlight">✅ 高密度記憶棉＋彈力PU棉：</span>雙重材質完美支撐，有彈性又能釋放壓力，讓肩頸輕鬆無負擔！</li>
                 <li><span class="highlight">✅ 高度可調整：</span>貼心設計，枕芯高度自由調整，每個人都能找到最舒服的角度！</li>
-                <span class="highlight">✅ 超透氣、不悶熱：</span>透氣網布＋高級織花布，讓你整晚保持乾爽，夏天也能安穩好眠！
+                <li><span class="highlight">✅ 超透氣、不悶熱：</span>透氣網布＋高級織花布，讓你整晚保持乾爽，夏天也能安穩好眠！</li>
             </ul>
 
             <h2>保固、配送與優惠 📣</h2>
             <ul>
                 <li><span class="highlight">🛡️ 保固期：</span>享有 1年保固，買得安心，用得放心！</li>
-                <li><span class="highlight">🚚 配送服務：</span>團購價含運不含稅，讓你省荷包！</li>
+                <li><span class="highlight">🚚 配送服務：</span>
+                    <ul>
+                        <li>團購價含運不含稅，讓你省荷包！</li>
+                        <li>可直送團購人員指定地址，輕鬆收貨超便利！</li>
+                    </ul>
+                </li>
             </ul>
 
             <h2>適合誰？</h2>
@@ -293,6 +301,10 @@
 
             <h2>團購優惠火熱進行中！🎉</h2>
             <p>📦 揪團享划算：一次買足，全家人一起睡得好！</p>
+            <p>👉 數量有限，揪團快下單！</p>
+
+            <h2>加入團購</h2>
+            <p>一起用超導石墨烯機能枕，讓每個夜晚變得超舒服！</p>
         </div>
 
         <!-- Call to Action Button -->
@@ -316,25 +328,11 @@
             radioButtons[index].checked = true;
         }
 
-        // Function to auto-rotate the slider
-        function autoRotate() {
+        // Automatic slider transition
+        setInterval(() => {
             currentIndex = (currentIndex + 1) % slides.length;
             changeSlide(currentIndex);
-        }
-
-        // Initial slide setup
-        changeSlide(currentIndex);
-
-        // Auto-rotate every 3 seconds
-        setInterval(autoRotate, 3000);
-
-        // Manually changing the slide when a radio button is clicked
-        radioButtons.forEach((radio, index) => {
-            radio.addEventListener('click', () => {
-                currentIndex = index;
-                changeSlide(currentIndex);
-            });
-        });
+        }, 5000);
     </script>
 </body>
 </html>
