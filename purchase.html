@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超導石墨烯機能枕 - 訂購頁</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 0 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 1000px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-section {
+            flex: 1;
+            padding-right: 20px;
+            text-align: center;
+        }
+
+        .image-section img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .details-section {
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        .title {
+            font-size: 36px;
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 32px;
+            color: #006f8e;
+            margin-bottom: 20px;
+        }
+
+        .quantity-selection {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 20px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select {
+            font-size: 24px;
+            padding: 10px;
+            width: 100%;
+            max-width: 150px; /* Adjust width to prevent overflow */
+        }
+
+        button {
+            padding: 12px 30px;
+            background-color: #006f8e;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 50px; /* Ensures both buttons have the same height */
+            display: inline-block;
+            width: 48%; /* Make buttons equal width */
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: #00576b;
+        }
+
+        .total-price {
+            font-size: 28px;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        /* Step 2 Form */
+        .form-container {
+            display: none; /* Hidden by default */
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px 0;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .form-container label {
+            font-size: 20px;
+        }
+
+        .confirm-button {
+            background-color: #006f8e;
+        }
+
+        .confirm-button:hover {
+            background-color: #00576b;
+        }
+
+        .confirmation-section {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .confirmation-section img {
+            width: 150px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .confirmation-details {
+            flex: 1;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .confirmation-details div {
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .confirmation-details strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .title-section {
+            font-size: 24px;
+            color: #006f8e;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #006f8e;
+        }
+
+        .total-price-confirmation {
+            font-size: 22px;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .back-button,
+        .confirm-button {
+            height: 50px; /* Ensure both buttons have the same height */
+            padding: 0 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="step1">
+        <div class="image-section">
+            <img src="https://linensociety.com/cdn/shop/products/heirloom-pillow_14294b09-8232-4d5d-a305-022b802669ab.jpg?v=1584402804&width=1400" alt="Pillow Image">
+        </div>
+        <div class="details-section">
+            <div class="title">超導石墨烯機能枕 MF-PL-06</div>
+            <div class="price">1000 NTD</div>
+
+            <div class="quantity-selection">
+                <label for="quantity">數量:</label>
+                <select id="quantity" name="quantity" onchange="calculateTotal()">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+
+            <div class="total-price" id="total-price">總金額: 1000 NTD</div>
+
+            <div class="button-container">
+                <button class="back-button" onclick="goToStep1()">返回</button>
+                <button class="next-button" onclick="goToStep2()">下一步</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-container" id="step2">
+        <div class="confirmation-section">
+            <div class="confirmation-image">
+                <img id="confirmation-image" src="" alt="Product Image">
+            </div>
+            <div class="confirmation-details">
+                <div class="title-section">確認訂單</div>
+                <div><strong>數量:</strong> <span id="confirmation-quantity"></span></div>
+                <div><strong>總金額:</strong> <span id="confirmation-total"></span> NTD</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <label for="name">姓名:</label>
+            <input type="text" id="name" name="name" placeholder="請輸入您的姓名" required>
+
+            <label for="email">電子郵件:</label>
+            <input type="email" id="email" name="email" placeholder="請輸入您的電子郵件" required>
+
+            <label for="address">地址:</label>
+            <textarea id="address" name="address" placeholder="請輸入您的地址" rows="3" required></textarea>
+
+            <label for="phone">電話:</label>
+            <input type="tel" id="phone" name="phone" placeholder="請輸入您的電話號碼" required>
+
+            <div class="button-container">
+                <button class="back-button" onclick="goToStep1()">返回</button>
+                <button class="confirm-button" onclick="submitForm()">確認訂單</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Calculate total price based on quantity
+        function calculateTotal() {
+            const quantity = document.getElementById('quantity').value;
+            const unitPrice = 1000; // Price per unit
+            const totalPrice = unitPrice * quantity;
+            document.getElementById('total-price').innerText = `總金額: ${totalPrice} NTD`;
+        }
+
+        // Go to Step 2 (Order Confirmation)
+        function goToStep2() {
+            const quantity = document.getElementById('quantity').value;
+            const totalPrice = document.getElementById('total-price').innerText.split(':')[1].trim();
+
+            document.getElementById('confirmation-quantity').innerText = quantity;
+            document.getElementById('confirmation-total').innerText = totalPrice;
+
+            // Set the product image in the confirmation section
+            document.getElementById('confirmation-image').src = "https://linensociety.com/cdn/shop/products/heirloom-pillow_14294b09-8232-4d5d-a305-022b802669ab.jpg?v=1584402804&width=1400";
+
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+        }
+
+        // Submit Order and Show Confirmation
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+
+            if (name && email && address && phone) {
+                alert(`訂單已確認! \n\n姓名: ${name} \n電子郵件: ${email} \n地址: ${address} \n電話: ${phone}`);
+            } else {
+                alert('請填寫所有欄位!');
+            }
+        }
+
+        // Go back to Step 1
+        function goToStep1() {
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('step2').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
