@@ -19,7 +19,8 @@
 
         .container {
             display: flex;
-            justify-content: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
             align-items: flex-start;
             width: 100%;
             max-width: 1000px;
@@ -30,7 +31,7 @@
         }
 
         .image-section {
-            flex: 1;
+            flex: 1 1 40%; /* Allows the image section to take 40% of the width */
             padding-right: 20px;
             text-align: center;
         }
@@ -44,7 +45,7 @@
         }
 
         .details-section {
-            flex: 1;
+            flex: 1 1 50%; /* Takes the remaining width */
             padding-left: 20px;
         }
 
@@ -75,7 +76,7 @@
             font-size: 24px;
             padding: 10px;
             width: 100%;
-            max-width: 150px; /* Adjust width to prevent overflow */
+            max-width: 150px;
         }
 
         button {
@@ -87,11 +88,10 @@
             border-radius: 8px;
             cursor: pointer;
             margin-top: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            height: 50px; /* Ensures both buttons have the same height */
-            display: inline-block;
-            width: 48%; /* Make buttons equal width */
+            width: auto;
+            height: 50px;
             text-align: center;
+            display: inline-block;
         }
 
         button:hover {
@@ -104,9 +104,8 @@
             margin-top: 20px;
         }
 
-        /* Step 2 Form */
         .form-container {
-            display: none; /* Hidden by default */
+            display: none;
             width: 100%;
             max-width: 1000px;
             margin: 20px 0;
@@ -187,54 +186,83 @@
 
         .button-container {
             display: flex;
-            justify-content: space-between; /* Align buttons to the left and right */
-            width: 100%; /* Full width to ensure they take the full available space */
-            margin-top: 20px; /* Add space between buttons and total price */
+            justify-content: space-between;
+            margin-top: 20px;
         }
-        
-        .home-button,
-        .next-button {
-            padding: 12px 30px;
-            background-color: #006f8e;
+
+        /* Order Now button style */
+        .order-now-button {
+            padding: 20px 40px;
+            font-size: 22px;
+            background-color: #f4a261;  /* Orange color */
             color: white;
-            font-size: 18px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            height: 50px; /* Same height for both buttons */
-            text-align: center;
-            width: 48%; /* Make both buttons take equal width */
-        }
-        
-        .home-button {
-            background-color: #f4a261; /* Slightly different color for the Home button */
-        }
-        
-        .home-button:hover {
-            background-color: #e07b3c; /* Darker color on hover */
-        }
-        
-        .next-button:hover {
-            background-color: #00576b; /* Darker color on hover */
+            width: auto;
+            margin-left: auto; /* Push it to the right */
+            display: block; /* Ensure it behaves like a block element for positioning */
+            transition: background-color 0.3s ease;
+            height: 50px; /* Same height as other buttons */
         }
 
-        .back-button,
-        .confirm-button {
-            height: 50px; /* Ensure both buttons have the same height */
-            padding: 0 30px;
+        .order-now-button:hover {
+            background-color: #e07b3c; /* Darker shade of orange on hover */
+        }
+
+        /* Back button style */
+        .back-button {
+            padding: 12px 30px;
+            font-size: 18px;
+            background-color: #006f8e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: auto;
+            height: 50px; /* Same height as other buttons */
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #00576b;
+        }
+
+        /* Button container for both buttons */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .form-section label {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .form-section input,
+        .form-section textarea {
+            font-size: 18px;
+            padding: 12px;
+            margin-bottom: 18px;
+            border-radius: 8px;
+            width: 100%;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
 
+    <!-- Step 1 -->
     <div class="container" id="step1">
         <div class="image-section">
-            <img src="https://linensociety.com/cdn/shop/products/heirloom-pillow_14294b09-8232-4d5d-a305-022b802669ab.jpg?v=1584402804&width=1400" alt="Pillow Image">
+            <img src="small.jpg" alt="Pillow Image">
         </div>
         <div class="details-section">
             <div class="title">超導石墨烯機能枕 MF-PL-06</div>
-            <div class="price">1000</div>
-    
+            <div class="price">1000 NTD</div>
+
             <div class="quantity-selection">
                 <label for="quantity">數量:</label>
                 <select id="quantity" name="quantity" onchange="calculateTotal()">
@@ -250,29 +278,27 @@
                     <option value="10">10</option>
                 </select>
             </div>
-    
+
             <div class="total-price" id="total-price">總金額: 1000 NTD</div>
-    
+
             <div class="button-container">
-                <!-- Home Button (left) -->
-                <a href="index.html">
-                    <button class="home-button">返回首頁</button>
-                </a>
-    
-                <!-- Next Button (right) -->
+                <button class="back-button" onclick="window.location.href = 'index.html';">首頁</button>
                 <button class="next-button" onclick="goToStep2()">下一步</button>
             </div>
         </div>
     </div>
 
-    <div class="form-container" id="step2">
+    <!-- Step 2: Order Confirmation -->
+    <div class="form-container" id="step2" style="display: none;">
         <div class="confirmation-section">
             <div class="confirmation-image">
-                <img id="confirmation-image" src="" alt="Product Image">
+                <img id="confirmation-image" src="small.jpg" alt="Product Image">
             </div>
             <div class="confirmation-details">
                 <div class="title-section">確認訂單</div>
+                <div><strong>商品:</strong> <span id="confirmation-product-name"></span></div>
                 <div><strong>數量:</strong> <span id="confirmation-quantity"></span></div>
+                <div><strong>單價:</strong> <span id="confirmation-price"></span></div>
                 <div><strong>總金額:</strong> <span id="confirmation-total"></span> NTD</div>
             </div>
         </div>
@@ -292,7 +318,7 @@
 
             <div class="button-container">
                 <button class="back-button" onclick="goToStep1()">返回</button>
-                <button class="confirm-button" onclick="submitForm()">確認訂單</button>
+                <button class="order-now-button" onclick="submitForm()">立即訂購</button>
             </div>
         </div>
     </div>
@@ -304,17 +330,21 @@
             const unitPrice = 1000; // Price per unit
             const totalPrice = unitPrice * quantity;
             document.getElementById('total-price').innerText = `總金額: ${totalPrice} NTD`;
+
+            // Store quantity in localStorage
+            localStorage.setItem('quantity', quantity);
         }
 
         // Go to Step 2 (Order Confirmation)
         function goToStep2() {
-            const quantity = document.getElementById('quantity').value;
-            const totalPrice = document.getElementById('total-price').innerText.split(':')[1].trim();
+            const quantity = localStorage.getItem('quantity') || 1; // Default to 1 if not set
+            const totalPrice = 1000 * quantity;
 
             document.getElementById('confirmation-quantity').innerText = quantity;
             document.getElementById('confirmation-total').innerText = totalPrice;
+            document.getElementById('confirmation-product-name').innerText = "超導石墨烯機能枕 MF-PL-06";
+            document.getElementById('confirmation-price').innerText = "1000 NTD";
 
-            // Set the product image in the confirmation section
             document.getElementById('confirmation-image').src = "small.jpg";
 
             document.getElementById('step1').style.display = 'none';
@@ -337,17 +367,13 @@
 
         // Go back to Step 1
         function goToStep1() {
+            // Reset content and layout of Step 1
             document.getElementById('step1').style.display = 'block';
             document.getElementById('step2').style.display = 'none';
-            
-            // Reset the content in Step 2 to prevent layout inconsistencies when going back
-            document.getElementById('name').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('address').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('confirmation-image').src = ''; // Remove the image
-            document.getElementById('confirmation-quantity').innerText = ''; // Remove the quantity
-            document.getElementById('confirmation-total').innerText = ''; // Remove the total price
+
+            // Reset quantity and total price
+            document.getElementById('quantity').value = localStorage.getItem('quantity') || 1;
+            calculateTotal(); // Recalculate total price based on saved quantity
         }
     </script>
 
