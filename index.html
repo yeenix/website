@@ -241,11 +241,11 @@
                 </div>
                 <!-- Second Image Slide -->
                 <div class="slide" id="slide-2">
-                    <img src="left.jpg" alt="Image 2">
+                    <img src="left.png" alt="Image 2">
                 </div>
-                <!-- Second Image Slide -->
+                <!-- Third Image Slide -->
                 <div class="slide" id="slide-3">
-                    <img src="right.jpg" alt="Image 3">
+                    <img src="right.png" alt="Image 3">
                 </div>
             </div>
         </div>
@@ -297,6 +297,8 @@
         // JavaScript for Image Slider and Radio Button functionality
         const radioButton1 = document.getElementById('image1');
         const radioButton2 = document.getElementById('image2');
+        const radioButton2 = document.getElementById('image3');
+        
         const slider = document.querySelector('.slider');
 
         radioButton1.addEventListener('change', function () {
@@ -321,7 +323,7 @@
             slider.style.transform = `translateX(-${currentSlide * 100}%)`;
             document.getElementById('image1').checked = currentSlide === 0;
             document.getElementById('image2').checked = currentSlide === 1;
-            document.getElementById('image2').checked = currentSlide === 2;
+            document.getElementById('image3').checked = currentSlide === 2;
         }, 3000);
     </script>
 </body>
