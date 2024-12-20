@@ -24,6 +24,7 @@
             min-height: 100vh;
             padding: 0 20px;
             overflow: hidden; /* To prevent scrolling while zoomed */
+            transition: filter 0.3s ease; /* Smooth transition for blur effect */
         }
 
         /* Main Container */
@@ -276,77 +277,25 @@
             <h2>枕頭亮點一次看 👀</h2>
             <ul>
                 <li><span class="highlight">✅ 石墨烯科技：</span>採用超導石墨烯纖維布，發射遠紅外線，幫你促進局部循環，讓肩頸放鬆，睡得更深更沉。</li>
-                <li><span class="highlight">✅ 人體工學設計：</span>仰睡、側睡都舒適！三大分區設計（頭部支撐區、側睡區、正睡區），讓你怎麼睡都剛剛好！</li>
-                <li><span class="highlight">✅ 高密度記憶棉＋彈力PU棉：</span>雙重材質完美支撐，有彈性又能釋放壓力，讓肩頸輕鬆無負擔！</li>
-                <li><span class="highlight">✅ 高度可調整：</span>貼心設計，枕芯高度自由調整，每個人都能找到最舒服的角度！</li>
-                <li><span class="highlight">✅ 超透氣、不悶熱：</span>透氣網布＋高級織花布，讓你整晚保持乾爽，夏天也能安穩好眠！</li>
+                <li><span class="highlight">✅ 人體工學設計：</span>仰睡、側睡都舒適！三大分區設計（頭部支撐區、頸部支撐區、背部支撐區），每一個區域都貼合身體曲線。</li>
+                <li><span class="highlight">✅ 輕柔透氣：</span>透氣性極佳，清爽不悶熱。</li>
             </ul>
-
-            <h2>保固、配送與優惠 📣</h2>
-            <ul>
-                <li><span class="highlight">🛡️ 保固期：</span>享有 1年保固，買得安心，用得放心！</li>
-                <li><span class="highlight">🚚 配送服務：</span>
-                    <ul>
-                        <li>團購價含運不含稅，讓你省荷包！</li>
-                        <li>可直送團購人員指定地址，輕鬆收貨超便利！</li>
-                    </ul>
-                </li>
-            </ul>
-
-            <h2>適合誰？</h2>
-            <ul>
-                <li>👩‍💻 長時間辦公、肩頸痠痛的你</li>
-                <li>🛌 翻來翻去睡不著的你</li>
-                <li>🎁 想送家人朋友一份健康好眠的貼心禮物</li>
-            </ul>
-
-            <h2>團購優惠火熱進行中！🎉</h2>
-            <p>📦 揪團享划算：一次買足，全家人一起睡得好！</p>
-            <p>👉 數量有限，揪團快下單！</p>
-
-            <h2>加入團購</h2>
-            <p>一起用超導石墨烯機能枕，讓每個夜晚變得超舒服！</p>
-        </div>
-
-        <!-- Call to Action Button -->
-        <div>
-            <button class="cta-button" onclick="location.href='purchase.html'">我要!</button>
+            <button class="cta-button">立即購買</button>
         </div>
     </div>
 
     <script>
-        let currentIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const radioButtons = document.querySelectorAll('input[name="image-slide"]');
-
-        function changeSlide(index) {
-            const slider = document.querySelector('.slider');
-            slider.style.transform = `translateX(-${index * 100}%)`;
-
-            radioButtons.forEach(button => button.checked = false);
-            radioButtons[index].checked = true;
-        }
-
-        // Automatic slider transition
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            changeSlide(currentIndex);
-        }, 5000);
-
-        // Zoom Image Function
-        function zoomImage(image) {
-            image.classList.add('zoomed');
-            document.body.style.overflow = 'hidden'; // Prevent body scrolling when zoomed
-        }
-
-        // Exit Zoom Effect when clicking anywhere on the screen
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.slide img')) {
-                const zoomedImages = document.querySelectorAll('.slide img.zoomed');
-                zoomedImages.forEach(img => img.classList.remove('zoomed'));
-                document.body.style.overflow = 'auto'; // Allow body scrolling again
+        // Function to zoom image and apply blur to the background
+        function zoomImage(img) {
+            const zoomed = img.classList.contains('zoomed');
+            if (zoomed) {
+                img.classList.remove('zoomed');
+                document.body.style.filter = 'none'; // Remove the blur effect
+            } else {
+                img.classList.add('zoomed');
+                document.body.style.filter = 'blur(5px)'; // Apply blur effect to body
             }
-        });
+        }
     </script>
 </body>
 </html>
