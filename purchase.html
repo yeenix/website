@@ -187,8 +187,35 @@
 
         .button-container {
             display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
+            justify-content: space-between; /* Align buttons to the left and right */
+            width: 100%; /* Full width to ensure they take the full available space */
+            margin-top: 20px; /* Add space between buttons and total price */
+        }
+        
+        .home-button,
+        .next-button {
+            padding: 12px 30px;
+            background-color: #006f8e;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            height: 50px; /* Same height for both buttons */
+            text-align: center;
+            width: 48%; /* Make both buttons take equal width */
+        }
+        
+        .home-button {
+            background-color: #f4a261; /* Slightly different color for the Home button */
+        }
+        
+        .home-button:hover {
+            background-color: #e07b3c; /* Darker color on hover */
+        }
+        
+        .next-button:hover {
+            background-color: #00576b; /* Darker color on hover */
         }
 
         .back-button,
@@ -207,7 +234,7 @@
         <div class="details-section">
             <div class="title">超導石墨烯機能枕 MF-PL-06</div>
             <div class="price">1000</div>
-
+    
             <div class="quantity-selection">
                 <label for="quantity">數量:</label>
                 <select id="quantity" name="quantity" onchange="calculateTotal()">
@@ -223,18 +250,17 @@
                     <option value="10">10</option>
                 </select>
             </div>
-
+    
             <div class="total-price" id="total-price">總金額: 1000 NTD</div>
-
+    
             <div class="button-container">
-                <button class="next-button" onclick="goToStep2()">下一步</button>
-            </div>
-
-            <!-- Home Button -->
-            <div class="button-container">
+                <!-- Home Button (left) -->
                 <a href="index.html">
                     <button class="home-button">返回首頁</button>
                 </a>
+    
+                <!-- Next Button (right) -->
+                <button class="next-button" onclick="goToStep2()">下一步</button>
             </div>
         </div>
     </div>
