@@ -372,38 +372,31 @@
         function adjustImageSize() {
             const slides = document.querySelectorAll('.slide img');
             slides.forEach(image => {
-                const containerWidth = image.parentElement.offsetWidth;
-                const containerHeight = image.parentElement.offsetHeight;
+                const container = image.parentElement;
+                const containerWidth = container.offsetWidth;
+                const containerHeight = container.offsetHeight;
         
                 const imgWidth = image.naturalWidth;
                 const imgHeight = image.naturalHeight;
         
+                // Calculate aspect ratios
+                const containerAspectRatio = containerWidth / containerHeight;
+                const imageAspectRatio = imgWidth / imgHeight;
+        
                 // Reset any previous class
                 image.classList.remove('wider-than-container', 'taller-than-container');
         
-                // If the image is wider than the container
-                if (imgWidth > imgHeight && imgWidth > containerWidth) {
-                    image.classList.add('wider-than-container'); // Apply width 100% and auto height
-                } 
-                // If the image is taller than the container
-                else if (imgHeight > imgWidth && imgHeight > containerHeight) {
-                    image.classList.add('taller-than-container'); // Apply height 100% and auto width
-                } 
-                // If it's a square image or smaller image that fits both dimensions
-                else {
-                    image.style.width = 'auto';
-                    image.style.height = 'auto';
+                // Apply appropriate class based on aspect ratio comparison
+                if (imageAspectRatio > containerAspectRatio) {
+                    image.classList.add('wider-than-container');
+                } else {
+                    image.classList.add('taller-than-container');
                 }
             });
         }
         
-        // Run the adjustment on page load and whenever images are loaded
+        // Run adjustment logic on load and resize
         window.addEventListener('load', adjustImageSize);
-        document.querySelectorAll('.slide img').forEach(img => {
-            img.addEventListener('load', adjustImageSize);
-        });
-        
-        // Re-adjust on window resize
         window.addEventListener('resize', adjustImageSize);
         
         // Zoom image function
