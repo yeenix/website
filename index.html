@@ -108,12 +108,12 @@
         }
     
         .slide img {
-            display: block; /* Ensure the image is treated as a block-level element */
-            margin: 0 auto; /* Centers the image horizontally */
-            border-radius: 20px; /* Rounded corners for the image */
-            transition: transform 0.3s ease; /* Smooth transition for image zoom effects */
-            object-fit: cover;
-            object-position: center; /* Center the image within the container */
+            display: block;
+            max-width: 100%; /* Ensure it doesn't exceed container width */
+            max-height: 100%; /* Ensure it doesn't exceed container height */
+            object-fit: contain; /* Keep aspect ratio and ensure no cropping */
+            border-radius: 20px; /* Rounded corners for aesthetics */
+            transition: transform 0.3s ease; /* For zoom effects */
         }
     
         /* If the image is wider than the container */
@@ -372,46 +372,36 @@
             slides.forEach(image => {
                 const containerWidth = image.parentElement.offsetWidth;
                 const containerHeight = image.parentElement.offsetHeight;
-    
+        
                 const imgWidth = image.naturalWidth;
                 const imgHeight = image.naturalHeight;
-    
+        
                 // Reset any previous class
                 image.classList.remove('wider-than-container', 'taller-than-container');
-    
-                // If the image is wider than the container
-                if (imgWidth > imgHeight && imgWidth > containerWidth) {
-                    image.classList.add('wider-than-container'); // Apply width 100% and auto height
-                } 
-                // If the image is taller than the container
-                else if (imgHeight > imgWidth && imgHeight > containerHeight) {
-                    image.classList.add('taller-than-container'); // Apply height 100% and auto width
-                } 
-                // If it's a square image or smaller image that fits both dimensions
-                else {
-                    image.style.width = 'auto';
+        
+                // Compare aspect ratios
+                if ((imgWidth / imgHeight) > (containerWidth / containerHeight)) {
+                    // Landscape: Wider than container
+                    image.classList.add('wider-than-container'); // Width 100%, height auto
+                    image.style.width = '100%';
                     image.style.height = 'auto';
+                } else {
+                    // Portrait or square: Taller than container
+                    image.classList.add('taller-than-container'); // Height 100%, width auto
+                    image.style.height = '100%';
+                    image.style.width = 'auto';
                 }
             });
         }
-
-    // Run on page load and on image load
-    window.addEventListener('load', adjustImageSize);
-    document.querySelectorAll('.slide img').forEach(img => {
-        img.addEventListener('load', adjustImageSize);
-    });
-
-    // Run on page load and on image load
-    window.addEventListener('load', adjustImageSize);
-    document.querySelectorAll('.slide img').forEach(img => {
-        img.addEventListener('load', adjustImageSize);
-    });
-
-    // Run on page load and on image load
-    window.addEventListener('load', adjustImageSize);
-    document.querySelectorAll('.slide img').forEach(img => {
-        img.addEventListener('load', adjustImageSize);
-    });
+        
+        // Run the adjustment on page load and whenever images are loaded
+        window.addEventListener('load', adjustImageSize);
+        document.querySelectorAll('.slide img').forEach(img => {
+            img.addEventListener('load', adjustImageSize);
+        });
+        
+        // Re-adjust on window resize
+        window.addEventListener('resize', adjustImageSize);
         
         // Zoom image function
         function zoomImage(imageElement) {
