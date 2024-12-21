@@ -45,7 +45,7 @@
 
         /* Title Section */
             .title {
-                font-size: 5vw; /* Default font size based on viewport width */
+                font-size: 3vw; /* Default font size based on viewport width */
                 color: #5A5A5A;
                 font-weight: 700;
                 margin-bottom: 30px;
@@ -82,10 +82,10 @@
         .slider-container {
             position: relative;
             width: 100%;
-            max-width: 1000px;  /* Adjust as necessary */
-            height: 400px;  /* Fixed height for the slider container */
+            max-width: 1000px;
+            height: 400px;
             margin: 0 auto;
-            overflow: hidden; /* Hide overflow */
+            overflow: hidden; /* Ensures no extra images are shown */
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
@@ -97,34 +97,37 @@
         }
     
         .slide {
-            width: 100%;  /* Each slide takes up the full width of the container */
+            width: 100%; /* Each slide takes up the full width of the container */
             height: 100%;
-            flex-shrink: 0;  /* Prevent shrinking */
+            flex-shrink: 0; /* Prevent shrinking */
             position: relative;
             display: flex;
             justify-content: center; /* Horizontally center image */
             align-items: center; /* Vertically center image */
+            overflow: hidden;
         }
     
         .slide img {
-            display: block;
-            margin: 0 auto;  /* Centers the image horizontally */
+            display: block; /* Ensure the image is treated as a block-level element */
+            margin: 0 auto; /* Centers the image horizontally */
             border-radius: 20px; /* Rounded corners for the image */
             transition: transform 0.3s ease; /* Smooth transition for image zoom effects */
-            object-position: center;  /* Center the image within the container */
+            object-fit: cover;
+            object-position: center; /* Center the image within the container */
         }
     
-        /* Image adjustments when the image is wider than the container */
+        /* If the image is wider than the container */
         .slide img.wider-than-container {
-            width: 100%;    /* Set width to 100% when image is wider than slider */
-            height: auto;   /* Adjust height to maintain aspect ratio */
+            width: 100%;  /* If image is wider, set width to 100% */
+            height: auto; /* Maintain aspect ratio, let height adjust accordingly */
         }
     
-        /* Image adjustments when the image is taller than the container */
+        /* If the image is taller than the container */
         .slide img.taller-than-container {
-            width: auto;    /* Set width to auto when image is taller than slider */
-            height: 100%;   /* Adjust height to 100% to fit vertically */
+            height: 100%;  /* If image is taller, set height to 100% */
+            width: auto;   /* Maintain aspect ratio, let width adjust accordingly */
         }
+
         .slide img.zoomed {
             transform: scale(2.0); /* Increase the image size when zoomed */
             z-index: 10;
@@ -391,12 +394,6 @@
                 }
             });
         }
-
-    // Run on page load and on image load
-    window.addEventListener('load', adjustImageSize);
-    document.querySelectorAll('.slide img').forEach(img => {
-        img.addEventListener('load', adjustImageSize);
-    });
 
     // Run on page load and on image load
     window.addEventListener('load', adjustImageSize);
