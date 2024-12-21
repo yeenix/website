@@ -121,7 +121,7 @@
         .slide img.taller-than-container {
             height: 100%;  /* Ensure image takes up 100% of the container height */
             width: auto;   /* Let the width adjust according to the aspect ratio */
-            object-fit: contain; /* Maintain aspect ratio and ensure no cropping */
+            object-fit: contain; /* Ensure the image fits inside the container without cropping */
             object-position: center; /* Center the image vertically */
             display: block;
             margin: 0 auto;  /* Center the image horizontally */
@@ -388,15 +388,15 @@
                 // Reset any previous class
                 image.classList.remove('wider-than-container', 'taller-than-container');
             
-                // If the image is wider than the container
-                if (imgWidth > imgHeight && imgWidth > containerWidth) {
-                    image.classList.add('wider-than-container'); // Apply width 100% and auto height
+                // If the image is taller than the container (height > width)
+                if (imgHeight > imgWidth) {
+                    image.classList.add('taller-than-container'); // Force image into the height-based class
                 } 
-                // If the image is taller than the container
-                else if (imgHeight > imgWidth && imgHeight > containerHeight) {
-                    image.classList.add('taller-than-container'); // Apply height 100% and auto width
+                // If the image is wider than the container (width > height)
+                else if (imgWidth > imgHeight) {
+                    image.classList.add('wider-than-container'); // Force image into the width-based class
                 } 
-                // For other cases, where the image fits inside the container
+                // For images with similar width and height (e.g. square), it fits naturally
                 else {
                     image.style.width = 'auto';
                     image.style.height = 'auto';
