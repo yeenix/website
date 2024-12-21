@@ -406,6 +406,12 @@
     document.querySelectorAll('.slide img').forEach(img => {
         img.addEventListener('load', adjustImageSize);
     });
+
+    // Run on page load and on image load
+    window.addEventListener('load', adjustImageSize);
+    document.querySelectorAll('.slide img').forEach(img => {
+        img.addEventListener('load', adjustImageSize);
+    });
         
         // Zoom image function
         function zoomImage(imageElement) {
