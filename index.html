@@ -90,14 +90,24 @@
         }
 
         .slide img {
-            width: 100%;
-            height: auto;
+            max-width: 100%;
+            ,ax-height: 100%;
             object-fit: contain; /* Maintain the original aspect ratio */
             object-position: center;
             border-radius: 20px;
             transition: transform 0.3s ease;
             display: block; /* Ensures image does not exceed its container */
             margin: 0 auto; /* Centers the image horizontally if it's smaller than the container */
+        }
+
+        .slide img.wider-than-container {
+        width: 100%;  /* If image is wider, set width to 100% */
+        height: auto; /* Maintain aspect ratio, let height adjust accordingly */
+        }
+    
+        .slide img.taller-than-container {
+            height: 100%;  /* If image is taller, set height to 100% */
+            width: auto;   /* Maintain aspect ratio, let width adjust accordingly */
         }
 
         .slide img.zoomed {
@@ -339,6 +349,37 @@
     </div>
 
     <script>
+        function adjustImageSize() {
+            const slides = document.querySelectorAll('.slide img');
+            slides.forEach(image => {
+                const containerWidth = image.parentElement.offsetWidth;
+                const containerHeight = image.parentElement.offsetHeight;
+    
+                const imgWidth = image.naturalWidth;
+                const imgHeight = image.naturalHeight;
+    
+                // Reset any previous class
+                image.classList.remove('wider-than-container', 'taller-than-container');
+    
+                if (imgWidth > imgHeight) {
+                    // Image is wider than the slider
+                    image.classList.add('wider-than-container');
+                } else if (imgHeight > imgWidth) {
+                    // Image is taller than the slider
+                    image.classList.add('taller-than-container');
+                } else {
+                    // If it's square or equal, apply default centering
+                    image.classList.add('wider-than-container');
+                }
+            });
+        }
+
+    // Run on page load and on image load
+    window.addEventListener('load', adjustImageSize);
+    document.querySelectorAll('.slide img').forEach(img => {
+        img.addEventListener('load', adjustImageSize);
+    });
+        
         // Zoom image function
         function zoomImage(imageElement) {
             var zoomedImage = document.getElementById('zoomed-image');
