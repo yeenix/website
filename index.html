@@ -334,4 +334,49 @@
             <p>💤 超強支撐力 × 舒適透氣 × 完美貼合<br>讓你一覺到天亮，舒服到不想離開床！</p>
             <h2>枕頭亮點一次看 👀</h2>
             <ul>
-                <li><span class="highlight">✅ 石墨烯科技</span> • 採用超導石墨烯纖
+                <li><span class="highlight">✅ 石墨烯科技</span> • 採用超導石墨烯纖維，散熱性極佳，保持涼爽感受。</li>
+                <li><span class="highlight">✅ 可調整高度</span> • 依需求自由調整，給你最佳的枕頭高度。</li>
+                <li><span class="highlight">✅ 舒適柔軟</span> • 採用高回彈記憶棉，助你快速進入夢鄉。</li>
+                <li><span class="highlight">✅ 耐用持久</span> • 頂級製程，穩定耐用，無需頻繁更換。</li>
+            </ul>
+            <div class="cta-button">
+                <a href="#">立即購買</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zoomed Image Container -->
+    <div class="zoomed-image-container" id="zoomed-container" onclick="closeZoom()">
+        <img id="zoomed-image" src="" alt="Zoomed Image">
+    </div>
+
+    <script>
+        let currentSlide = 0;
+
+        function zoomImage(image) {
+            const zoomedContainer = document.getElementById('zoomed-container');
+            const zoomedImage = document.getElementById('zoomed-image');
+            zoomedContainer.style.visibility = 'visible';
+            zoomedImage.src = image.src;
+        }
+
+        function closeZoom() {
+            const zoomedContainer = document.getElementById('zoomed-container');
+            zoomedContainer.style.visibility = 'hidden';
+        }
+
+        // Image Slider Navigation
+        document.getElementById('image1').addEventListener('click', () => {
+            document.getElementById('slider').style.transform = 'translateX(0)';
+        });
+
+        document.getElementById('image2').addEventListener('click', () => {
+            document.getElementById('slider').style.transform = 'translateX(-100%)';
+        });
+
+        document.getElementById('image3').addEventListener('click', () => {
+            document.getElementById('slider').style.transform = 'translateX(-200%)';
+        });
+    </script>
+</body>
+</html>
