@@ -325,7 +325,9 @@
         </div>
 
         <!-- Call to Action Button -->
-        <button class="cta-button" id="buy-now-button">立即購買</button>
+        <a href="purchase.html">
+            <button class="cta-button" id="buy-now-button">立即購買</button>
+        </a>
 
     </div>
 
@@ -349,11 +351,6 @@
             this.style.visibility = 'hidden';
             document.getElementById('zoomed-image').classList.remove('zoomed');
         };
-
-        // Add click event listener to redirect to purchase.html
-        document.getElementById('buy-now-button').addEventListener('click', function() {
-            window.location.href = 'purchase.html'; // Redirect to purchase.html
-        });
 
         // Auto slider function
         let currentSlide = 0;
