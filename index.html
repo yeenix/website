@@ -430,7 +430,7 @@
         function nextSlide() {
             currentSlide = (currentSlide + 1) % totalSlides; // Loop back to first slide
             const slider = document.getElementById('slider');
-            slider.style.transform = translateX(-${currentSlide * 100}%); // Move to next slide
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`; // Move to next slide
             updateRadioButtonState(); // Update radio button state
         }
 
@@ -442,7 +442,7 @@
             radio.addEventListener('change', () => {
                 if (radio.checked) {
                     const slider = document.getElementById('slider');
-                    slider.style.transform = translateX(-${index * 100}%); // Move to the corresponding slide
+                    slider.style.transform = `translateX(-${index * 100}%)`; // Move to the corresponding slide
                     currentSlide = index; // Update the current slide index
                 }
             });
@@ -464,4 +464,3 @@
     </script>
 </body>
 </html>
-
