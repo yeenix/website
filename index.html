@@ -377,41 +377,45 @@
 
     <script>
         function adjustImageSize() {
-        const slides = document.querySelectorAll('.slide img');
-        slides.forEach(image => {
-            const containerWidth = image.parentElement.offsetWidth;
-            const containerHeight = image.parentElement.offsetHeight;
+            const slides = document.querySelectorAll('.slide img');
+            slides.forEach(image => {
+                const containerWidth = image.parentElement.offsetWidth;
+                const containerHeight = image.parentElement.offsetHeight;
         
-            const imgWidth = image.naturalWidth;
-            const imgHeight = image.naturalHeight;
-    
-            // Reset any previous class
-            image.classList.remove('wider-than-container', 'taller-than-container');
+                const imgWidth = image.naturalWidth;
+                const imgHeight = image.naturalHeight;
         
-            // If the image is taller than the container (height > width), assign the correct class
-            if (imgHeight > imgWidth) {
-                image.classList.add('taller-than-container'); // For height-based scaling
-            } 
-            // If the image is wider than the container (width > height), assign the width-based class
-            else if (imgWidth > imgHeight) {
-                image.classList.add('wider-than-container'); // For width-based scaling
-            } 
-            // If the image is square, it should fit naturally
-            else {
-                image.style.width = 'auto';
+                // Reset image style before applying new logic
+                image.style.width = '';
+                image.style.height = '';
+                image.style.objectFit = '';
+                image.style.objectPosition = '';
+        
+                // First, scale based on width (100% width)
+                image.style.width = '100%';
                 image.style.height = 'auto';
-            }
+        
+                // If scaling to 100% width causes the image to overflow vertically, scale based on height
+                if (image.offsetHeight > containerHeight) {
+                    image.style.width = 'auto';
+                    image.style.height = '100%';
+                    image.style.objectFit = 'contain';
+                    image.style.objectPosition = 'center'; // Keep it centered
+                } else {
+                    image.style.objectFit = 'contain';
+                    image.style.objectPosition = 'center'; // Keep it centered
+                }
+            });
+        }
+        
+        // Run the adjustment on page load and whenever images are loaded
+        window.addEventListener('load', adjustImageSize);
+        document.querySelectorAll('.slide img').forEach(img => {
+            img.addEventListener('load', adjustImageSize);
         });
-    }
-    
-    // Run the adjustment on page load and whenever images are loaded
-    window.addEventListener('load', adjustImageSize);
-    document.querySelectorAll('.slide img').forEach(img => {
-        img.addEventListener('load', adjustImageSize);
-    });
-    
-    // Re-adjust on window resize
-    window.addEventListener('resize', adjustImageSize);
+        
+        // Re-adjust on window resize
+        window.addEventListener('resize', adjustImageSize);
         
         // Zoom image function
         function zoomImage(imageElement) {
