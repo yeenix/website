@@ -126,6 +126,8 @@
         .slide img.taller-than-container {
             height: 100%;  /* If image is taller, set height to 100% */
             width: auto;   /* Maintain aspect ratio, let width adjust accordingly */
+            object-fit: contain; /* Ensure the image is fully visible */
+            object-position: top; /* Align the image to the top */
         }
 
         .slide img.zoomed {
@@ -379,17 +381,18 @@
                 // Reset any previous class
                 image.classList.remove('wider-than-container', 'taller-than-container');
         
-                // Compare aspect ratios
-                if ((imgWidth / imgHeight) > (containerWidth / containerHeight)) {
-                    // Landscape: Wider than container
-                    image.classList.add('wider-than-container'); // Width 100%, height auto
-                    image.style.width = '100%';
-                    image.style.height = 'auto';
-                } else {
-                    // Portrait or square: Taller than container
-                    image.classList.add('taller-than-container'); // Height 100%, width auto
-                    image.style.height = '100%';
+                // If the image is wider than the container
+                if (imgWidth > imgHeight && imgWidth > containerWidth) {
+                    image.classList.add('wider-than-container'); // Apply width 100% and auto height
+                } 
+                // If the image is taller than the container
+                else if (imgHeight > imgWidth && imgHeight > containerHeight) {
+                    image.classList.add('taller-than-container'); // Apply height 100% and auto width
+                } 
+                // If it's a square image or smaller image that fits both dimensions
+                else {
                     image.style.width = 'auto';
+                    image.style.height = 'auto';
                 }
             });
         }
