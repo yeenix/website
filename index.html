@@ -326,14 +326,13 @@
 
         <!-- Call to Action Button -->
         <a href="purchase.html">
-            <button class="cta-button" id="buy-now-button">立即購買</button>
+            <button class="cta-button">立即購買</button>
         </a>
-
     </div>
 
-    <!-- Zoomed Image Container -->
+    <!-- Zoomed Image -->
     <div class="zoomed-image-container" id="zoomed-image-container">
-        <img src="" alt="Zoomed Image" id="zoomed-image">
+        <img id="zoomed-image" src="" alt="Zoomed Image">
     </div>
 
     <script>
@@ -361,10 +360,36 @@
             currentSlide = (currentSlide + 1) % totalSlides; // Loop back to first slide
             const slider = document.getElementById('slider');
             slider.style.transform = `translateX(-${currentSlide * 100}%)`; // Move to next slide
+            updateRadioButtonState(); // Update radio button state
         }
 
         // Set interval for auto slide every 3 seconds
         setInterval(nextSlide, 3000);
+
+        // Slider radio button functionality
+        document.querySelectorAll('.slider-radio-buttons input').forEach((radio, index) => {
+            radio.addEventListener('change', () => {
+                if (radio.checked) {
+                    const slider = document.getElementById('slider');
+                    slider.style.transform = `translateX(-${index * 100}%)`; // Move to the corresponding slide
+                    currentSlide = index; // Update the current slide index
+                }
+            });
+        });
+
+        // Function to update radio button state based on the current slide
+        function updateRadioButtonState() {
+            // Uncheck all radio buttons first
+            document.querySelectorAll('.slider-radio-buttons input').forEach((radio) => {
+                radio.checked = false;
+            });
+            // Check the radio button corresponding to the current slide
+            document.querySelectorAll('.slider-radio-buttons input')[currentSlide].checked = true;
+        }
+
+        // Initialize radio buttons state
+        updateRadioButtonState();
+
     </script>
 </body>
 </html>
