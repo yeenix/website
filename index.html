@@ -108,33 +108,13 @@
         }
     
         .slide img {
-            display: block;
-            max-width: 100%; /* Ensure the image does not exceed the container width */
-            max-height: 100%; /* Ensure the image does not exceed the container height */
-            object-fit: contain; /* Maintain aspect ratio and fit the image inside the container */
-            object-position: center; /* Center the image (for both height and width) */
-            border-radius: 20px; /* Rounded corners */
-            transition: transform 0.3s ease; /* Smooth transition for zoom effects */
-        }
-    
-        /* When the image is taller than the container */
-        .slide img.taller-than-container {
-            height: 100%;  /* Ensure image fills the height of the container */
-            width: auto;   /* Let the width adjust to the aspect ratio */
-            object-fit: contain;  /* Maintain aspect ratio without cropping */
-            object-position: center;  /* Center the image vertically */
-            display: block;
-            margin: 0 auto;  /* Center the image horizontally */
-        }
-        
-        /* When the image is wider than the container */
-        .slide img.wider-than-container {
-            width: 100%;  /* Ensure image fills the width of the container */
-            height: auto;  /* Let the height adjust to the aspect ratio */
-            object-fit: contain;  /* Maintain aspect ratio without cropping */
-            object-position: center;  /* Center the image */
-            display: block;
-            margin: 0 auto;  /* Center the image horizontally */
+            max-width: 100%; /* Maximale Breite des Bildes innerhalb des Sliders */
+            max-height: 100%; /* Maximale Höhe des Bildes innerhalb des Sliders */
+            width: auto; /* Beibehaltung des Seitenverhältnisses */
+            height: auto; /* Beibehaltung des Seitenverhältnisses */
+            margin: auto; /* Zentriert das Bild im Slider */
+            position: relative; /* Erlaubt zentrierte Positionierung */
+            display: block; /* Verhindert Leerzeichen um das Bild */
         }
 
         .slide img.zoomed {
@@ -376,38 +356,6 @@
     </div>
 
     <script>
-        function adjustImageSize() {
-            const slides = document.querySelectorAll('.slide img');
-            slides.forEach(image => {
-                const containerWidth = image.parentElement.offsetWidth;
-                const containerHeight = image.parentElement.offsetHeight;
-        
-                const imgWidth = image.naturalWidth;
-                const imgHeight = image.naturalHeight;
-        
-                // Reset image style before applying new logic
-                image.style.width = '';
-                image.style.height = '';
-                image.style.objectFit = '';
-                image.style.objectPosition = '';
-        
-                // First, scale based on width (100% width)
-                image.style.width = '100%';
-                image.style.height = 'auto';
-        
-                // If scaling to 100% width causes the image to overflow vertically, scale based on height
-                if (image.offsetHeight > containerHeight) {
-                    image.style.width = 'auto';
-                    image.style.height = '100%';
-                    image.style.objectFit = 'contain';
-                    image.style.objectPosition = 'center'; // Keep it centered
-                } else {
-                    image.style.objectFit = 'contain';
-                    image.style.objectPosition = 'center'; // Keep it centered
-                }
-            });
-        }
-        
         // Run the adjustment on page load and whenever images are loaded
         window.addEventListener('load', adjustImageSize);
         document.querySelectorAll('.slide img').forEach(img => {
