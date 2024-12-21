@@ -356,15 +356,6 @@
     </div>
 
     <script>
-        // Run the adjustment on page load and whenever images are loaded
-        window.addEventListener('load', adjustImageSize);
-        document.querySelectorAll('.slide img').forEach(img => {
-            img.addEventListener('load', adjustImageSize);
-        });
-        
-        // Re-adjust on window resize
-        window.addEventListener('resize', adjustImageSize);
-        
         // Zoom image function
         function zoomImage(imageElement) {
             var zoomedImage = document.getElementById('zoomed-image');
