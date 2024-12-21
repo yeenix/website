@@ -44,29 +44,30 @@
         }
 
         /* Title Section */
+        .title {
+            font-size: 3vw; /* Default font size based on viewport width */
+            color: #5A5A5A;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            position: relative;
+            letter-spacing: 2px;
+        }
+        
+        /* For smaller screens (Mobile) */
+        @media screen and (max-width: 768px) {
             .title {
-                font-size: 3vw; /* Default font size based on viewport width */
-                color: #5A5A5A;
-                font-weight: 700;
-                margin-bottom: 30px;
-                text-transform: uppercase;
-                position: relative;
-                letter-spacing: 2px;
+                font-size: 7vw; /* Larger font size on smaller screens */
             }
-            
-            /* For smaller screens (Mobile) */
-            @media screen and (max-width: 768px) {
-                .title {
-                    font-size: 7vw; /* Larger font size on smaller screens */
-                }
+        }
+        
+        /* For medium screens (Tablet) */
+        @media screen and (max-width: 1024px) {
+            .title {
+                font-size: 6vw; /* Font size adjusts for tablets */
             }
-            
-            /* For medium screens (Tablet) */
-            @media screen and (max-width: 1024px) {
-                .title {
-                    font-size: 6vw; /* Font size adjusts for tablets */
-                }
-            }
+        }
+        
         .title::after {
             content: '';
             position: absolute;
@@ -333,134 +334,4 @@
             <p>💤 超強支撐力 × 舒適透氣 × 完美貼合<br>讓你一覺到天亮，舒服到不想離開床！</p>
             <h2>枕頭亮點一次看 👀</h2>
             <ul>
-                <li><span class="highlight">✅ 石墨烯科技</span> • 採用超導石墨烯纖維布，發射遠紅外線，幫你促進局部循環，讓肩頸放鬆，睡得更深更沉。</li>
-                <li><span class="highlight">✅ 人體工學設計</span> • 仰睡、側睡都舒適！三大分區設計（頭部支撐區、側睡區、正睡區），讓你怎麼睡都剛剛好！</li>
-                <li><span class="highlight">✅ 高密度記憶棉＋彈力PU棉</span> • 雙重材質完美支撐，有彈性又能釋放壓力，讓肩頸輕鬆無負擔！</li>
-                <li><span class="highlight">✅ 高度可調整，量身打造你的睡感！</span> • 貼心設計，枕芯高度自由調整，每個人都能找到最舒服的角度！</li>
-                <li><span class="highlight">✅ 超透氣、不悶熱</span> • 透氣網布＋高級織花布，讓你整晚保持乾爽，夏天也能安穩好眠！</li>
-            </ul>
-            <h2>保固、配送與優惠 📣</h2>
-            <ul>
-                <li><span class="highlight">🛡️ 保固期：</span>享有 1年保固，買得安心，用得放心！</li>
-                <li><span class="highlight">🚚 配送服務：</span> • 團購價含運不含稅，讓你省荷包！ • 可直送團購人員指定地址，輕鬆收貨超便利！</li>
-            </ul>
-            <h2>適合誰？</h2>
-            <ul>
-                <li>• 👩‍💻 長時間辦公、肩頸痠痛的你</li>
-                <li>• 🛌 翻來翻去睡不著的你</li>
-                <li>• 🎁 想送家人朋友一份健康好眠的貼心禮物</li>
-            </ul>
-            <p>團購優惠火熱進行中！🎉</p>
-            <p>📦 揪團享划算：一次買足，全家人一起睡得好！</p>
-            <p>👉 數量有限，揪團快下單！</p>
-        </div>
-
-        <!-- Call to Action Button -->
-        <a href="purchase.html">
-            <button class="cta-button">立即購買</button>
-        </a>
-    </div>
-
-    <!-- Zoomed Image -->
-    <div class="zoomed-image-container" id="zoomed-image-container">
-        <img id="zoomed-image" src="" alt="Zoomed Image">
-    </div>
-
-    <script>
-        function adjustImageSize() {
-            const slides = document.querySelectorAll('.slide img');
-            slides.forEach(image => {
-                const containerWidth = image.parentElement.offsetWidth;
-                const containerHeight = image.parentElement.offsetHeight;
-    
-                const imgWidth = image.naturalWidth;
-                const imgHeight = image.naturalHeight;
-    
-                // Reset any previous class
-                image.classList.remove('wider-than-container', 'taller-than-container');
-    
-                // If the image is wider than the container
-                if (imgWidth > imgHeight && imgWidth > containerWidth) {
-                    image.classList.add('wider-than-container'); // Apply width 100% and auto height
-                } 
-                // If the image is taller than the container
-                else if (imgHeight > imgWidth && imgHeight > containerHeight) {
-                    image.classList.add('taller-than-container'); // Apply height 100% and auto width
-                } 
-                // If it's a square image or smaller image that fits both dimensions
-                else {
-                    image.style.width = 'auto';
-                    image.style.height = 'auto';
-                }
-            });
-        }
-
-    // Run on page load and on image load
-    window.addEventListener('load', adjustImageSize);
-    document.querySelectorAll('.slide img').forEach(img => {
-        img.addEventListener('load', adjustImageSize);
-    });
-
-    // Run on page load and on image load
-    window.addEventListener('load', adjustImageSize);
-    document.querySelectorAll('.slide img').forEach(img => {
-        img.addEventListener('load', adjustImageSize);
-    });
-        
-        // Zoom image function
-        function zoomImage(imageElement) {
-            var zoomedImage = document.getElementById('zoomed-image');
-            var zoomedImageContainer = document.getElementById('zoomed-image-container');
-            zoomedImage.src = imageElement.src;
-            zoomedImageContainer.style.visibility = 'visible';
-            zoomedImage.classList.add('zoomed');
-        }
-
-        // Close the zoomed image when clicked
-        document.getElementById('zoomed-image-container').onclick = function() {
-            this.style.visibility = 'hidden';
-            document.getElementById('zoomed-image').classList.remove('zoomed');
-        };
-
-        // Auto slider function
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides; // Loop back to first slide
-            const slider = document.getElementById('slider');
-            slider.style.transform = `translateX(-${currentSlide * 100}%)`; // Move to next slide
-            updateRadioButtonState(); // Update radio button state
-        }
-
-        // Set interval for auto slide every 3 seconds
-        setInterval(nextSlide, 3000);
-
-        // Slider radio button functionality
-        document.querySelectorAll('.slider-radio-buttons input').forEach((radio, index) => {
-            radio.addEventListener('change', () => {
-                if (radio.checked) {
-                    const slider = document.getElementById('slider');
-                    slider.style.transform = `translateX(-${index * 100}%)`; // Move to the corresponding slide
-                    currentSlide = index; // Update the current slide index
-                }
-            });
-        });
-
-        // Function to update radio button state based on the current slide
-        function updateRadioButtonState() {
-            // Uncheck all radio buttons first
-            document.querySelectorAll('.slider-radio-buttons input').forEach((radio) => {
-                radio.checked = false;
-            });
-            // Check the radio button corresponding to the current slide
-            document.querySelectorAll('.slider-radio-buttons input')[currentSlide].checked = true;
-        }
-
-        // Initialize radio buttons state
-        updateRadioButtonState();
-
-    </script>
-</body>
-</html>
+                <li><span class="highlight">✅ 石墨烯科技</span> • 採用超導石墨烯纖
