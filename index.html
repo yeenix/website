@@ -217,7 +217,9 @@
             width: 100%;
             max-width: 300px;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 20px;
+            margin: 0 auto;
+            display: block;
+            margin-top: 40px; /* Space between the description and button */
             box-shadow: 0 10px 20px rgba(90, 90, 90, 0.2);
         }
 
@@ -320,8 +322,10 @@
             <p>團購優惠火熱進行中！🎉</p>
             <p>📦 揪團享划算：一次買足，全家人一起睡得好！</p>
             <p>👉 數量有限，揪團快下單！</p>
-            <button class="cta-button">立即購買</button> <!-- The "Buy Now" button -->
         </div>
+
+        <!-- Call to Action Button -->
+        <button class="cta-button" id="buy-now-button">立即購買</button>
 
     </div>
 
@@ -345,6 +349,25 @@
             this.style.visibility = 'hidden';
             document.getElementById('zoomed-image').classList.remove('zoomed');
         };
+
+        // Add click event listener to redirect to purchase.html
+        document.getElementById('buy-now-button').addEventListener('click', function() {
+            window.location.href = 'purchase.html'; // Redirect to purchase.html
+        });
+
+        // Auto slider function
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides; // Loop back to first slide
+            const slider = document.getElementById('slider');
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`; // Move to next slide
+        }
+
+        // Set interval for auto slide every 3 seconds
+        setInterval(nextSlide, 3000);
     </script>
 </body>
 </html>
