@@ -91,14 +91,14 @@
         }
     
         .slide img {
-            max-width: 100%; /* Image width will not exceed 100% of container width */
-            max-height: 100%; /* Image height will not exceed 100% of container height */
-            object-fit: contain; /* Ensure image fits within the bounds without cropping */
-            object-position: center; /* Center the image both horizontally and vertically */
-            border-radius: 20px;
-            transition: transform 0.3s ease;
-            display: block; /* Ensures image does not exceed its container */
+            display: block; /* Ensure the image is treated as a block-level element */
             margin: 0 auto; /* Centers the image horizontally */
+            border-radius: 20px; /* Rounded corners for the image */
+            transition: transform 0.3s ease; /* Smooth transition for image zoom effects */
+            object-fit: contain; /* Maintain aspect ratio without cropping */
+            object-position: center; /* Center the image within the container */
+            max-width: 100%; /* Allow image width to scale to container's width */
+            max-height: 100%; /* Allow image height to scale to container's height */
         }
     
         /* If the image is wider than the container */
