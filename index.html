@@ -97,10 +97,14 @@
         }
     
         .slide {
+            width: 100%; /* Each slide takes up the full width of the container */
+            height: 100%;
+            flex-shrink: 0; /* Prevent shrinking */
             position: relative;
-            overflow: hidden; /* Ensures image does not stick out */
-            width: 100%;      /* Match the desired layout dimensions */
-            height: 100%;     /* Match the desired layout dimensions */
+            display: flex;
+            justify-content: center; /* Horizontally center image */
+            align-items: center; /* Vertically center image */
+            overflow: hidden;
         }
     
         .slide img {
@@ -112,20 +116,18 @@
             transition: transform 0.3s ease; /* For zoom effects */
         }
     
-        /* For images taller than the container */
-        .slide img.taller-than-container {
-            height: 100%;  /* Fill container height */
-            width: auto;   /* Maintain aspect ratio */
-            object-fit: contain;
-            object-position: top; /* Align to the top */
-        }
-        
-        /* For images wider than the container (default landscape behavior) */
+        /* If the image is wider than the container */
         .slide img.wider-than-container {
-            width: 100%;   /* Fill container width */
-            height: auto;  /* Maintain aspect ratio */
-            object-fit: contain;
-            object-position: center;
+            width: 100%;  /* If image is wider, set width to 100% */
+            height: auto; /* Maintain aspect ratio, let height adjust accordingly */
+        }
+    
+        /* If the image is taller than the container */
+        .slide img.taller-than-container {
+            height: 100%;  /* If image is taller, set height to 100% */
+            width: auto;   /* Maintain aspect ratio, let width adjust accordingly */
+            object-fit: contain; /* Ensure the image is fully visible */
+            object-position: top; /* Align the image to the top */
         }
 
         .slide img.zoomed {
@@ -370,9 +372,8 @@
         function adjustImageSize() {
             const slides = document.querySelectorAll('.slide img');
             slides.forEach(image => {
-                const container = image.parentElement;
-                const containerWidth = container.offsetWidth;
-                const containerHeight = container.offsetHeight;
+                const containerWidth = image.parentElement.offsetWidth;
+                const containerHeight = image.parentElement.offsetHeight;
         
                 const imgWidth = image.naturalWidth;
                 const imgHeight = image.naturalHeight;
@@ -380,20 +381,31 @@
                 // Reset any previous class
                 image.classList.remove('wider-than-container', 'taller-than-container');
         
-                if (imgWidth / imgHeight > containerWidth / containerHeight) {
-                    // Image will hit the width border first
-                    image.classList.add('wider-than-container');
-                } else {
-                    // Image will hit the height border first
-                    image.classList.add('taller-than-container');
+                // If the image is wider than the container
+                if (imgWidth > imgHeight && imgWidth > containerWidth) {
+                    image.classList.add('wider-than-container'); // Apply width 100% and auto height
+                } 
+                // If the image is taller than the container
+                else if (imgHeight > imgWidth && imgHeight > containerHeight) {
+                    image.classList.add('taller-than-container'); // Apply height 100% and auto width
+                } 
+                // If it's a square image or smaller image that fits both dimensions
+                else {
+                    image.style.width = 'auto';
+                    image.style.height = 'auto';
                 }
             });
         }
         
-        // Call adjustImageSize on window load and resize events
+        // Run the adjustment on page load and whenever images are loaded
         window.addEventListener('load', adjustImageSize);
+        document.querySelectorAll('.slide img').forEach(img => {
+            img.addEventListener('load', adjustImageSize);
+        });
+        
+        // Re-adjust on window resize
         window.addEventListener('resize', adjustImageSize);
-                
+        
         // Zoom image function
         function zoomImage(imageElement) {
             var zoomedImage = document.getElementById('zoomed-image');
