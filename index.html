@@ -117,22 +117,22 @@
             transition: transform 0.3s ease; /* Smooth transition for zoom effects */
         }
     
-        /* If the image is taller than the container */
+        /* When the image is taller than the container */
         .slide img.taller-than-container {
-            height: 100%;  /* Ensure image takes up 100% of the container height */
-            width: auto;   /* Let the width adjust according to the aspect ratio */
-            object-fit: contain; /* Ensure the image fits inside the container without cropping */
-            object-position: center; /* Center the image vertically */
+            height: 100%;  /* Ensure image fills the height of the container */
+            width: auto;   /* Let the width adjust to the aspect ratio */
+            object-fit: contain;  /* Maintain aspect ratio without cropping */
+            object-position: center;  /* Center the image vertically */
             display: block;
             margin: 0 auto;  /* Center the image horizontally */
         }
         
-        /* If the image is wider than the container */
+        /* When the image is wider than the container */
         .slide img.wider-than-container {
-            width: 100%;  /* Ensure image takes up 100% of the container width */
-            height: auto;  /* Let the height adjust according to the aspect ratio */
-            object-fit: contain; /* Ensure the image fits inside the container */
-            object-position: center; /* Center the image */
+            width: 100%;  /* Ensure image fills the width of the container */
+            height: auto;  /* Let the height adjust to the aspect ratio */
+            object-fit: contain;  /* Maintain aspect ratio without cropping */
+            object-position: center;  /* Center the image */
             display: block;
             margin: 0 auto;  /* Center the image horizontally */
         }
@@ -377,42 +377,41 @@
 
     <script>
         function adjustImageSize() {
-            const slides = document.querySelectorAll('.slide img');
-            slides.forEach(image => {
-                const containerWidth = image.parentElement.offsetWidth;
-                const containerHeight = image.parentElement.offsetHeight;
-            
-                const imgWidth = image.naturalWidth;
-                const imgHeight = image.naturalHeight;
-            
-                // Reset any previous class
-                image.classList.remove('wider-than-container', 'taller-than-container');
-            
-                // If the image is taller than the container (height > width)
-                if (imgHeight > imgWidth) {
-                    image.classList.add('taller-than-container'); // Force image into the height-based class
-                } 
-                // If the image is wider than the container (width > height)
-                else if (imgWidth > imgHeight) {
-                    image.classList.add('wider-than-container'); // Force image into the width-based class
-                } 
-                // For images with similar width and height (e.g. square), it fits naturally
-                else {
-                    image.style.width = 'auto';
-                    image.style.height = 'auto';
-                }
-            });
-        }
+        const slides = document.querySelectorAll('.slide img');
+        slides.forEach(image => {
+            const containerWidth = image.parentElement.offsetWidth;
+            const containerHeight = image.parentElement.offsetHeight;
         
-        // Run the adjustment on page load and whenever images are loaded
-        window.addEventListener('load', adjustImageSize);
-        document.querySelectorAll('.slide img').forEach(img => {
-            img.addEventListener('load', adjustImageSize);
+            const imgWidth = image.naturalWidth;
+            const imgHeight = image.naturalHeight;
+    
+            // Reset any previous class
+            image.classList.remove('wider-than-container', 'taller-than-container');
+        
+            // If the image is taller than the container (height > width), assign the correct class
+            if (imgHeight > imgWidth) {
+                image.classList.add('taller-than-container'); // For height-based scaling
+            } 
+            // If the image is wider than the container (width > height), assign the width-based class
+            else if (imgWidth > imgHeight) {
+                image.classList.add('wider-than-container'); // For width-based scaling
+            } 
+            // If the image is square, it should fit naturally
+            else {
+                image.style.width = 'auto';
+                image.style.height = 'auto';
+            }
         });
-        
-        // Re-adjust on window resize
-        window.addEventListener('resize', adjustImageSize);
-
+    }
+    
+    // Run the adjustment on page load and whenever images are loaded
+    window.addEventListener('load', adjustImageSize);
+    document.querySelectorAll('.slide img').forEach(img => {
+        img.addEventListener('load', adjustImageSize);
+    });
+    
+    // Re-adjust on window resize
+    window.addEventListener('resize', adjustImageSize);
         
         // Zoom image function
         function zoomImage(imageElement) {
