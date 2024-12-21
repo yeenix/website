@@ -44,29 +44,16 @@
         }
 
         /* Title Section */
-            .title {
-                font-size: 3vw; /* Default font size based on viewport width */
-                color: #5A5A5A;
-                font-weight: 700;
-                margin-bottom: 30px;
-                text-transform: uppercase;
-                position: relative;
-                letter-spacing: 2px;
-            }
-            
-            /* For smaller screens (Mobile) */
-            @media screen and (max-width: 768px) {
-                .title {
-                    font-size: 7vw; /* Larger font size on smaller screens */
-                }
-            }
-            
-            /* For medium screens (Tablet) */
-            @media screen and (max-width: 1024px) {
-                .title {
-                    font-size: 6vw; /* Font size adjusts for tablets */
-                }
-            }
+        .title {
+            font-size: 48px;
+            color: #5A5A5A; /* Soft dark gray for a modern feel */
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
         .title::after {
             content: '';
             position: absolute;
@@ -112,7 +99,7 @@
             margin: 0 auto; /* Centers the image horizontally */
             border-radius: 20px; /* Rounded corners for the image */
             transition: transform 0.3s ease; /* Smooth transition for image zoom effects */
-            object-fit: cover;
+            object-fit: contain;
             object-position: center; /* Center the image within the container */
         }
     
